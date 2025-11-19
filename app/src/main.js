@@ -1,6 +1,4 @@
 import "./style.css";
-import javascriptLogo from "./javascript.svg";
-import viteLogo from "/vite.svg";
 // import { setupCounter } from './counter.js' HOW TO TAKE SOMETHING FROM ANOTHER FILE AND IMPORT IT
 
 // npm install
@@ -10,4 +8,4 @@ import viteLogo from "/vite.svg";
 
 setupCounter(document.querySelector("#counter"));
 
-const pets = [];
+const pokemon = [];
