@@ -237,3 +237,22 @@ const pokemon = [
     level: 5,
   },
 ];
+
+function displayPokemon(list) {
+  const container = document.querySelector(".container");
+  list.forEach((poke) => {
+    const card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML = `
+            <h3>${poke.name}</h3>
+            <p>Type: ${poke.type}</p>
+            <p>Hunger: ${poke.hunger}</p>
+            <p>Happiness: ${poke.happiness}</p>
+            <p>Energy: ${poke.energy}</p>
+            <p>Health: ${poke.health}</p>
+        `;
+    container.appendChild(card);
+  });
+}
+
+displayPokemon(pokemon);

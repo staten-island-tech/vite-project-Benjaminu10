@@ -1,6 +1,6 @@
-@import url(https://fonts.google.com/specimen/Press+Start+2P);
+@import url(https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap);
 
-.press-start-2p-regular {
+.press-start-2p {
   font-family: "Press Start 2P", system-ui;
   font-weight: 400;
   font-style: normal;
@@ -24,7 +24,7 @@
 }
 
 h2 {
-  font-family: "press-start-2p-regular";
+  font-family: "Press Start 2P";
   font-size: 16px;
   color: #333;
   text-align: center;
