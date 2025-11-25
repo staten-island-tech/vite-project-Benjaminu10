@@ -30,6 +30,63 @@ h2 {
   text-align: center;
   margin-top: 10px;
 }
+
+.container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  background-color: rgba(85, 98, 76, 0.4);
+  box-shadow: 20px 10px 10px rgba(11, 37, 3, 0.3);
+  margin: 9vh 5vw;
+  border-radius: 12px;
+}
+
+.card {
+  width: 22%;
+  height: 200px;
+  background-color: #ffffff;
+  box-shadow: 20px 10px 10px rgba(11, 37, 3, 0.364);
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border-radius: 12px;
+  border: 3px solid rgb(0, 0, 0);
+}
+
+.cardButton {
+  font-family: "Press Start 2P";
+  font-size: 12px;
+  padding: 10px 20px;
+  background-color: #ffffff;
+  border: 2px solid #000000;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+.cardButton:hover {
+  background-color: #f0f0f0;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.cardButton:active {
+  font-size: 12px;
+}
+
+.cardPokemon {
+  font-family: "Press Start 2P";
+  font-size: 14px;
+  color: #000000;
+  text-align: center;
+  margin: 10px 0;
+}
+
 /* 
 Fonts:
 Press Start 2P - https://fonts.google.com/specimen/Press+Start+2P
