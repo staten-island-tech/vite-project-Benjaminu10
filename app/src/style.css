@@ -1,5 +1,12 @@
 @import url(https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap);
 
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 .press-start-2p {
   font-family: "Press Start 2P", system-ui;
   font-weight: 400;
@@ -14,24 +21,31 @@
 }
 
 :root {
---type-fire: #bd5555;
---type-water: #5590bd;
---type-grass: #55bd6c;
---type-electric: #e3d55a;
---type-psychic: #bd5590;
---type-ice: #55bdbd;
---type-dark: #705848;
---type-fairy: #f4adc9;
---type-normal: #fdfdcb;
---type-fighting: #c03028;
---type-flying: #d5c9fa;
---type-poison: #a040a0;
---type-ground: #e0c068;
---type-rock: #b8a038;
---type-bug: #a8b820;
---type-ghost: #705898;
---type-steel: #b8b8d0;
---type-dragon: #7038f8;
+  --type-fire: #bd5555;
+  --type-water: #5590bd;
+  --type-grass: #55bd6c;
+  --type-electric: #e3d55a;
+  --type-psychic: #bd5590;
+  --type-ice: #55bdbd;
+  --type-dark: #705848;
+  --type-fairy: #f4adc9;
+  --type-normal: #fdfdcb;
+  --type-fighting: #c03028;
+  --type-flying: #d5c9fa;
+  --type-poison: #a040a0;
+  --type-ground: #e0c068;
+  --type-rock: #b8a038;
+  --type-bug: #a8b820;
+  --type-ghost: #705898;
+  --type-steel: #b8b8d0;
+  --type-dragon: #7038f8;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+  font-family: "Press Start 2P", system-ui;
 }
 
 .title {
@@ -42,6 +56,7 @@
   border-color: blue;
   text-align: center;
   margin-top: 20px;
+  text-shadow: 2px 2px 0 #ff0000, 4px 4px 0 #000000;
 }
 
 h2 {

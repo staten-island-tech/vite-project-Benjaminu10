@@ -286,7 +286,7 @@ function makeCard(poke) {
 
   DOMSelectors.container.insertAdjacentHTML(
     "beforeend",
-    `<div class="card type-${primaryType}" data-id="${poke.id -1 }">
+    `<div class="card type-${primaryType}" data-id="${poke.id - 1}">
             <h3 class="cardPokemon">${poke.name}</h3>
             <img src="${poke.sprite}" alt="${poke.name}" />
             <button class="cardButton">Select</button>
@@ -307,12 +307,21 @@ function setupStarterButtons() {
       DOMSelectors.container.firstChild.querySelector(".cardButton").remove();
       // REMOVE PICK YOUR STARTER TEXT
       document.querySelector(".starterText").remove();
-      // 
+      // SHOW STARTER STATS
+      const statsDiv = document.createElement("div");
+      statsDiv.classList.add("statsDiv");
+      statsDiv.innerHTML = `
+        <h3>${pokemon[index].name} Stats</h3>
+        <p>Type: ${pokemon[index].type}</p>
+        <p>Hunger: ${pokemon[index].hunger}</p>
+        <p>Happiness: ${pokemon[index].happiness}</p>
+        <p>Energy: ${pokemon[index].energy}</p>
+        <p>Health: ${pokemon[index].health}</p>
+      `;
+      DOMSelectors.container.appendChild(statsDiv);
     });
-  }
-  );
+  });
 }
-
 
 makeCard(pokemon[0]);
 makeCard(pokemon[3]);
