@@ -13,6 +13,27 @@
   font-style: normal;
 }
 
+:root {
+--type-fire: #bd5555;
+--type-water: #5590bd;
+--type-grass: #55bd6c;
+--type-electric: #e3d55a;
+--type-psychic: #bd5590;
+--type-ice: #55bdbd;
+--type-dark: #705848;
+--type-fairy: #f4adc9;
+--type-normal: #fdfdcb;
+--type-fighting: #c03028;
+--type-flying: #d5c9fa;
+--type-poison: #a040a0;
+--type-ground: #e0c068;
+--type-rock: #b8a038;
+--type-bug: #a8b820;
+--type-ghost: #705898;
+--type-steel: #b8b8d0;
+--type-dragon: #7038f8;
+}
+
 .title {
   font-family: "pokemonLogo"; /* Use the custom font in your CSS */
   font-size: 48px; /* Example font size */
@@ -25,17 +46,22 @@
 
 h2 {
   font-family: "Press Start 2P";
-  font-size: 16px;
+  font-size: 32px;
   color: #333;
   text-align: center;
   margin-top: 10px;
 }
 
+.subtitle {
+  margin-bottom: 20px;
+}
 .container {
   display: flex;
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
   background-color: rgba(85, 98, 76, 0.4);
   box-shadow: 20px 10px 10px rgba(11, 37, 3, 0.3);
   margin: 9vh 5vw;
@@ -44,7 +70,8 @@ h2 {
 
 .card {
   width: 22%;
-  height: 200px;
+  min-height: 200px;
+  height: 250px;
   background-color: #ffffff;
   box-shadow: 20px 10px 10px rgba(11, 37, 3, 0.364);
   margin: 20px 0;
@@ -56,6 +83,52 @@ h2 {
   -webkit-backdrop-filter: blur(16px) saturate(180%);
   border-radius: 12px;
   border: 3px solid rgb(0, 0, 0);
+}
+
+.type-fire {
+  background-color: var(--type-fire);
+}
+.type-water {
+  background-color: var(--type-water);
+}
+.type-grass {
+  background-color: var(--type-grass);
+}
+.type-electric {
+  background-color: var(--type-electric);
+}
+.type-psychic {
+  background-color: var(--type-psychic);
+}
+.type-ice {
+  background-color: var(--type-ice);
+}
+.type-dark {
+  background-color: var(--type-dark);
+}
+.type-fairy {
+  background-color: var(--type-fairy);
+}
+.type-normal {
+  background-color: var(--type-normal);
+}
+.type-fighting {
+  background-color: var(--type-fighting);
+}
+.type-flying {
+  background-color: var(--type-flying);
+}
+.type-poison {
+  background-color: var(--type-poison);
+}
+.type-ground {
+  background-color: var(--type-ground);
+}
+.type-rock {
+  background-color: var(--type-rock);
+}
+.type-bug {
+  background-color: var(--type-bug);
 }
 
 .cardButton {
@@ -84,7 +157,12 @@ h2 {
   font-size: 14px;
   color: #000000;
   text-align: center;
-  margin: 10px 0;
+  margin: 0px 0;
+}
+
+.card img {
+  width: 150px;
+  height: 150px;
 }
 
 /* 

@@ -282,9 +282,11 @@ const DOMSelectors = {
 
 // create card function
 function makeCard(poke) {
+  const primaryType = poke.type.split("/")[0].toLowerCase();
+
   DOMSelectors.container.insertAdjacentHTML(
     "beforeend",
-    `<div class="card">
+    `<div class="card type-${primaryType}" data-id="${poke.id -1 }">
             <h3 class="cardPokemon">${poke.name}</h3>
             <img src="${poke.sprite}" alt="${poke.name}" />
             <button class="cardButton">Select</button>
@@ -293,4 +295,27 @@ function makeCard(poke) {
   );
 }
 
-pokemon.forEach((poke) => makeCard(poke));
+function setupStarterButtons() {
+  const buttons = document.querySelectorAll(".cardButton");
+  buttons.forEach((button) => {
+    button.addEventListener("click", (event) => {
+      // HIDE OTHER CARDS AFTER SELECTION
+      DOMSelectors.container.innerHTML = "";
+      const index = event.target.closest(".card").getAttribute("data-id");
+      makeCard(pokemon[index]);
+      // REMOVE SELECT BUTTON
+      DOMSelectors.container.firstChild.querySelector(".cardButton").remove();
+      // REMOVE PICK YOUR STARTER TEXT
+      document.querySelector(".starterText").remove();
+      // 
+    });
+  }
+  );
+}
+
+
+makeCard(pokemon[0]);
+makeCard(pokemon[3]);
+makeCard(pokemon[6]);
+setupStarterButtons();
+// pokemon.forEach((poke) => makeCard(poke));

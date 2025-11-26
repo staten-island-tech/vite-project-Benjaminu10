@@ -1,0 +1,20 @@
+{
+  "name": "c",
+  "version": "1.0.0",
+  "description": "[![Open in Codespaces](https://classroom.github.com/assets/launch-codespace-2972f46106e565e64193e422d61a12cf1da4916b45550586e14ef0a7c637dd04.svg)](https://classroom.github.com/open-in-codespaces?assignment_repo_id=21362655)",
+  "homepage": "https://github.com/staten-island-tech/vite-project-Benjaminu10#readme",
+  "bugs": {
+    "url": "https://github.com/staten-island-tech/vite-project-Benjaminu10/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/staten-island-tech/vite-project-Benjaminu10.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
