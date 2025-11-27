@@ -4,6 +4,7 @@ html,
 body {
   height: 100%;
   margin: 0;
+  text-shadow: #ffffff 1px 1px 0;
   padding: 0;
 }
 
@@ -50,13 +51,13 @@ body {
 
 .title {
   font-family: "pokemonLogo"; /* Use the custom font in your CSS */
-  font-size: 48px; /* Example font size */
+  font-size: 90px; /* Example font size */
   color: #ffcc00; /* Example color */
   -webkit-text-stroke: 1px blue; /* outline width + color */
   border-color: blue;
   text-align: center;
   margin-top: 20px;
-  text-shadow: 2px 2px 0 #ff0000, 4px 4px 0 #000000;
+  text-shadow: 6px 6px 0 #ff0000, 4px 4px 0 #000000;
 }
 
 h2 {
@@ -169,8 +170,9 @@ h2 {
 
 .cardPokemon {
   font-family: "Press Start 2P";
-  font-size: 14px;
+  font-size: 20px;
   color: #000000;
+  text-shadow: #ffffff 1px 1px 0;
   text-align: center;
   margin: 0px 0;
 }
@@ -179,6 +181,39 @@ h2 {
   width: 150px;
   height: 150px;
 }
+
+.levelButton {
+  font-family: "Press Start 2P";
+  font-size: 12px;
+  padding: 10px 20px;
+  background-color: #ffffff;
+  border: 2px solid #000000;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+}
+.levelButton:hover {
+  background-color: #f0f0f0;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+.levelButton:active {
+  font-size: 12px;
+}
+
+.subHeader {
+  font-family: "Press Start 2P";
+  font-size: 24px;
+  color: #333;
+  text-align: left;
+  margin-top: 10px;
+  margin-left: 5vw;
+}
+
+.Hidden {
+  display: none;
+}
+
 
 /* 
 Fonts:
