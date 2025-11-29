@@ -297,6 +297,16 @@ const pokemon = [
   },
 ];
 
+let money = 0;
+let currentPokemon = null;
+
+function updateMoney(amount) {
+  document.querySelector(".moneyDisplay").textContent = `Pokedollars: $${amount}`;
+}
+
+money += 500; // Starting money
+
+updateMoney(money);
 
 const typeColors = {
   Grass: "#c7f0b3ff",
@@ -357,7 +367,7 @@ function applyCardBackground(card) {
   const color2 = secondaryType && secondaryType !== "null" ? typeColors[secondaryType] || "#FFFFFF" : null;
 
   if (secondaryType && color2) {
-    card.style.background = `linear-gradient(90deg, ${color1}, ${color2})`;
+    card.style.background = `linear-gradient(to right, ${color1}, ${color2})`;
   } else {
     card.style.backgroundColor = color1;
   }
@@ -490,6 +500,14 @@ makeCard(pokemon[0], DOMSelectors.container);
 makeCard(pokemon[3], DOMSelectors.container);
 makeCard(pokemon[6], DOMSelectors.container);
 
+
+//INITIALIZE SIDEBA
+
 setupStarterButtons();
+
+document.querySelector(".toggleButton").addEventListener("click", () => {
+  document.querySelector(".sidebar").classList.toggle("open")
+});
+
 // TEMPORARY TO INCREASE LEVELS
 // pokemon.forEach((poke) => makeCard(poke));
