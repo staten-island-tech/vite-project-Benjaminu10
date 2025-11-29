@@ -418,7 +418,7 @@ function setupStarterButtons() {
         <p>Happiness: ${pokemon[index].happiness}</p>
         <p>Energy: ${pokemon[index].energy}</p>
         <p>Health: ${pokemon[index].health}</p>
-        <button class="levelButton">LEVEL UP</button>
+        <button class="levelButton">TEMPORARY</button>
         <p class = "levelDisplay">Level: ${pokemon[index].level}</p>
       `;
       // Update background color based on type
@@ -459,7 +459,7 @@ function checkEvolution(poke) {  if (poke.canEvolve && poke.level >= poke.levelR
         <p>Happiness: ${nextEvolution.happiness}</p>
         <p>Energy: ${nextEvolution.energy}</p>
         <p>Health: ${nextEvolution.health}</p>
-        <button class="levelButton">LEVEL UP</button>
+        <button class="levelButton">TEMPORARY</button>
         <p class = "levelDisplay">Level: ${poke.level}</p>
       `;
       DOMSelectors.container.appendChild(statsDiv);
