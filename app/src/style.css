@@ -63,7 +63,6 @@ body {
   top: 0;
   transition: 0.3s;
   align-items: left;
-   
 }
 
 .sidebar.open {
@@ -214,7 +213,7 @@ h2 {
 
 .cardPokemon {
   font-family: "Press Start 2P";
-  font-size: 20px;
+  font-size: 1.5vw;
   color: #000000;
   text-shadow: #ffffff 1px 1px 0;
   text-align: center;
@@ -235,6 +234,7 @@ h2 {
   border-radius: 8px;
   cursor: pointer;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+  margin: auto;
 }
 .levelButton:hover {
   background-color: #f0f0f0;
@@ -257,7 +257,6 @@ h2 {
 .Hidden {
   display: none;
 }
-
 
 /* 
 Fonts:
