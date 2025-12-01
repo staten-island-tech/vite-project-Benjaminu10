@@ -9,7 +9,8 @@ const pokemon = [
     id: 1,
     name: "Bulbasaur",
     type: "Grass/Poison",
-    sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+    sprite:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
     canEvolve: true,
     evolvesTo: 2,
     level: 5,
@@ -24,7 +25,8 @@ const pokemon = [
     id: 2,
     name: "Ivysaur",
     type: "Grass/Poison",
-    sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png",
+    sprite:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png",
     canEvolve: true,
     evolvesTo: 3,
     levelRequirement: 32,
@@ -38,7 +40,8 @@ const pokemon = [
     id: 3,
     name: "Venusaur",
     type: "Grass/Poison",
-    sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png",
+    sprite:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png",
     canEvolve: false,
     evolvesTo: null,
     levelRequirement: null,
@@ -53,7 +56,8 @@ const pokemon = [
     id: 4,
     name: "Charmander",
     type: "Fire",
-    sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png",
+    sprite:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png",
     canEvolve: true,
     evolvesTo: 5,
     level: 5,
@@ -68,7 +72,8 @@ const pokemon = [
     id: 5,
     name: "Charmeleon",
     type: "Fire",
-    sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/5.png",
+    sprite:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/5.png",
     canEvolve: true,
     evolvesTo: 6,
     levelRequirement: 36,
@@ -82,7 +87,8 @@ const pokemon = [
     id: 6,
     name: "Charizard",
     type: "Fire/Flying",
-    sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png",
+    sprite:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png",
     canEvolve: false,
     evolvesTo: null,
     levelRequirement: null,
@@ -97,7 +103,8 @@ const pokemon = [
     id: 7,
     name: "Squirtle",
     type: "Water",
-    sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png",
+    sprite:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png",
     canEvolve: true,
     evolvesTo: 8,
     level: 5,
@@ -112,7 +119,8 @@ const pokemon = [
     id: 8,
     name: "Wartortle",
     type: "Water",
-    sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/8.png",
+    sprite:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/8.png",
     canEvolve: true,
     evolvesTo: 9,
     levelRequirement: 36,
@@ -126,7 +134,8 @@ const pokemon = [
     id: 9,
     name: "Blastoise",
     type: "Water",
-    sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/9.png",
+    sprite:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/9.png",
     canEvolve: false,
     evolvesTo: null,
     levelRequirement: null,
@@ -141,7 +150,8 @@ const pokemon = [
     id: 10,
     name: "Caterpie",
     type: "Bug",
-    sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10.png",
+    sprite:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10.png",
     canEvolve: true,
     evolvesTo: 11,
     levelRequirement: 7,
@@ -155,7 +165,8 @@ const pokemon = [
     id: 11,
     name: "Metapod",
     type: "Bug",
-    sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/11.png",
+    sprite:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/11.png",
     canEvolve: true,
     evolvesTo: 12,
     levelRequirement: 10,
@@ -169,7 +180,8 @@ const pokemon = [
     id: 12,
     name: "Butterfree",
     type: "Bug/Flying",
-    sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/12.png",
+    sprite:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/12.png",
     canEvolve: false,
     evolvesTo: null,
     levelRequirement: null,
@@ -184,7 +196,8 @@ const pokemon = [
     id: 13,
     name: "Weedle",
     type: "Bug/Poison",
-    sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/13.png",
+    sprite:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/13.png",
     canEvolve: true,
     evolvesTo: 14,
     levelRequirement: 7,
@@ -198,7 +211,8 @@ const pokemon = [
     id: 14,
     name: "Kakuna",
     type: "Bug/Poison",
-    sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/14.png",
+    sprite:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/14.png",
     canEvolve: true,
     evolvesTo: 15,
     levelRequirement: 10,
@@ -212,7 +226,8 @@ const pokemon = [
     id: 15,
     name: "Beedrill",
     type: "Bug/Poison",
-    sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/15.png",
+    sprite:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/15.png",
     canEvolve: false,
     evolvesTo: null,
     levelRequirement: null,
@@ -227,7 +242,8 @@ const pokemon = [
     id: 16,
     name: "Pidgey",
     type: "Normal/Flying",
-    sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/16.png",
+    sprite:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/16.png",
     canEvolve: true,
     evolvesTo: 17,
     levelRequirement: 18,
@@ -241,7 +257,8 @@ const pokemon = [
     id: 17,
     name: "Pidgeotto",
     type: "Normal/Flying",
-    sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/17.png",
+    sprite:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/17.png",
     canEvolve: true,
     evolvesTo: 18,
     levelRequirement: 36,
@@ -255,7 +272,8 @@ const pokemon = [
     id: 18,
     name: "Pidgeot",
     type: "Normal/Flying",
-    sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/18.png",
+    sprite:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/18.png",
     canEvolve: false,
     evolvesTo: null,
     levelRequirement: null,
@@ -270,7 +288,8 @@ const pokemon = [
     id: 19,
     name: "Rattata",
     type: "Normal",
-    sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/19.png",
+    sprite:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/19.png",
     canEvolve: true,
     evolvesTo: 20,
     levelRequirement: 20,
@@ -284,7 +303,8 @@ const pokemon = [
     id: 20,
     name: "Raticate",
     type: "Normal",
-    sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/20.png",
+    sprite:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/20.png",
     canEvolve: false,
     evolvesTo: null,
     levelRequirement: null,
@@ -301,7 +321,9 @@ let money = 0;
 let currentPokemon = null;
 
 function updateMoney(amount) {
-  document.querySelector(".moneyDisplay").textContent = `Pokedollars: $${amount}`;
+  document.querySelector(
+    ".moneyDisplay"
+  ).textContent = `Pokedollars: $${amount}`;
 }
 
 money += 500; // Starting money
@@ -340,15 +362,15 @@ function makeCard(poke, location) {
   const primaryType = types[0];
   const secondaryType = types[1] || null;
 
-
   const cardClasses = secondaryType
     ? `card type-${primaryType} type-${secondaryType.toLowerCase()}`
     : `card type-${primaryType}`;
 
-
   location.insertAdjacentHTML(
     "beforeend",
-    `<div class="${cardClasses}" data-primary = "${primaryType}" data-secondary="${secondaryType}" data-id="${poke.id - 1}">
+    `<div class="${cardClasses}" data-primary = "${primaryType}" data-secondary="${secondaryType}" data-id="${
+      poke.id - 1
+    }">
             <h3 class="cardPokemon">${poke.name}</h3>
             <img src="${poke.sprite}" alt="${poke.name}" />
             <button class="cardButton">Select</button>
@@ -364,7 +386,10 @@ function applyCardBackground(card) {
   const secondaryType = card.getAttribute("data-secondary");
 
   const color1 = typeColors[primaryType] || "#FFFFFF";
-  const color2 = secondaryType && secondaryType !== "null" ? typeColors[secondaryType] || "#FFFFFF" : null;
+  const color2 =
+    secondaryType && secondaryType !== "null"
+      ? typeColors[secondaryType] || "#FFFFFF"
+      : null;
 
   if (secondaryType && color2) {
     card.style.background = `linear-gradient(to right, ${color1}, ${color2})`;
@@ -372,8 +397,6 @@ function applyCardBackground(card) {
     card.style.backgroundColor = color1;
   }
 }
-
-
 
 function evolve(list) {
   // IF pokemon CAN EVOLVE && LEVEL === evolutionLevel
@@ -389,10 +412,7 @@ function updateBackground(pokeType) {
 function setupStarterButtons() {
   const buttons = document.querySelectorAll(".cardButton");
 
-  
-
   buttons.forEach((button) => {
-
     let clickedOnce = false;
 
     button.addEventListener("click", (event) => {
@@ -401,6 +421,7 @@ function setupStarterButtons() {
       if (!clickedOnce) {
         clickedOnce = true;
         button.textContent = "Are you sure?";
+        button.classList.add(confirmationButton);
 
         setTimeout(() => {
           clickedOnce = false;
@@ -442,7 +463,8 @@ function setupStarterButtons() {
   });
 }
 
-function checkEvolution(poke) {  if (poke.canEvolve && poke.level >= poke.levelRequirement) {
+function checkEvolution(poke) {
+  if (poke.canEvolve && poke.level >= poke.levelRequirement) {
     const nextEvolution = pokemon.find((p) => p.id === poke.evolvesTo);
     if (nextEvolution) {
       nextEvolution.level = poke.level; // Carry over the level to the new evolution
@@ -454,7 +476,8 @@ function checkEvolution(poke) {  if (poke.canEvolve && poke.level >= poke.levelR
       makeCard(nextEvolution, DOMSelectors.yourPokemon);
       //remove the select button if it exists
       const selectButton = DOMSelectors.container.querySelector(".cardButton");
-      const selectButtonYourPokemon = DOMSelectors.yourPokemon.querySelector(".cardButton");
+      const selectButtonYourPokemon =
+        DOMSelectors.yourPokemon.querySelector(".cardButton");
       if (selectButton || selectButtonYourPokemon) {
         selectButton.remove();
         selectButtonYourPokemon.remove();
@@ -475,13 +498,15 @@ function checkEvolution(poke) {  if (poke.canEvolve && poke.level >= poke.levelR
       DOMSelectors.container.appendChild(statsDiv);
       setUpLevelButton();
     }
-  }};
-
+  }
+}
 
 function setUpLevelButton() {
   const levelButton = document.querySelector(".levelButton");
   levelButton.addEventListener("click", (event) => {
-    const pokemonName = document.querySelector(".statsDiv h3").textContent.split(" ")[0];
+    const pokemonName = document
+      .querySelector(".statsDiv h3")
+      .textContent.split(" ")[0];
     const poke = pokemon.find((p) => p.name === pokemonName);
     poke.level = (poke.level || 1) + 1;
     const levelDisplay = document.querySelector(".levelDisplay");
@@ -489,24 +514,20 @@ function setUpLevelButton() {
     console.log(`${poke.name} leveled up to ${poke.level}`);
     // Check for evolution
     checkEvolution(poke);
-
-    
   });
 }
-
 
 // INITIAL STARTERS
 makeCard(pokemon[0], DOMSelectors.container);
 makeCard(pokemon[3], DOMSelectors.container);
 makeCard(pokemon[6], DOMSelectors.container);
 
-
 //INITIALIZE SIDEBA
 
 setupStarterButtons();
 
 document.querySelector(".toggleButton").addEventListener("click", () => {
-  document.querySelector(".sidebar").classList.toggle("open")
+  document.querySelector(".sidebar").classList.toggle("open");
 });
 
 // TEMPORARY TO INCREASE LEVELS

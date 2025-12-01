@@ -29,8 +29,8 @@ body {
   --type-ice: #55bdbd;
   --type-dark: #705848;
   --type-fairy: #f4adc9;
-  --type-normal: #fdfdcb;
-  --type-fighting: #c03028;
+  --type-normal: #fffff1;
+  --type-fighting: #e75851;
   --type-flying: #d5c9fa;
   --type-poison: #a040a0;
   --type-ground: #e0c068;
@@ -40,6 +40,29 @@ body {
   --type-steel: #b8b8d0;
   --type-dragon: #7038f8;
 }
+
+/* 
+
+#BA7971
+#7F92AD
+#92B88D
+#B7A64D
+#BA5F71
+#75A8A0
+DARK???
+#B68486
+NORMAL???
+FIGHTING
+#9F9BAF
+#884D7D
+#A99B63
+#90884A
+#829743
+#685B78
+STEEL??
+#6F3DB0
+
+ */
 
 .toggleButton {
   position: fixed;
@@ -53,6 +76,11 @@ body {
 }
 
 .sidebar {
+  display: flex;
+  justify-content: space-around;
+  align-items: left;
+  flex-wrap: wrap;
+  flex-direction: column;
   width: 250px;
   height: 100vh;
   background: rgba(85, 98, 76, 0.4);
@@ -62,11 +90,33 @@ body {
   left: -250px;
   top: 0;
   transition: 0.3s;
-  align-items: left;
+  z-index: 999;
 }
 
 .sidebar.open {
   left: 0;
+}
+
+.settingsButton {
+  font-family: "Press Start 2P";
+  font-size: 12px;
+  padding: 10px 20px;
+  background-color: #ffffff;
+  border: 2px solid #000000;
+  border-radius: 8px;
+  margin: 0px 30px;
+  cursor: pointer;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+.settingsButton:hover {
+  background-color: #f0f0f0;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.settingsButton:active {
+  font-size: 12px;
 }
 
 body {
@@ -105,7 +155,7 @@ h2 {
   position: fixed;
   top: 0;
   right: 0;
-  background-color: rgba(85, 98, 76, 0.4);
+  background-color: rgba(85, 98, 76, 0.5);
   box-shadow: 20px 10px 10px rgba(11, 37, 3, 0.3);
   padding: 10px;
   border-radius: 8px;
@@ -142,6 +192,7 @@ h2 {
   -webkit-backdrop-filter: blur(16px) saturate(180%);
   border-radius: 12px;
   border: 3px solid rgb(0, 0, 0);
+  z-index: 1;
 }
 
 .type-fire {
@@ -188,6 +239,10 @@ h2 {
 }
 .type-bug {
   background-color: var(--type-bug);
+}
+
+.confirmationButton {
+  font-size: 8px;
 }
 
 .cardButton {
