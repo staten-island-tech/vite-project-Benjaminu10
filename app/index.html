@@ -8,25 +8,30 @@
     <title>Pokegotchi!</title>
   </head>
   <body>
-    <div class="sidebar">
-      <button class="toggleButton">☰</button>
-      <h2>MENU</h2>
-      <button class="settingsButton">TEST</button>
-      <button class="settingsButton">TEST</button>
-      <button class="settingsButton">TEST</button>
-      <button class="settingsButton">TEST</button>
+    <div class="main">
+      <div class="sidebar">
+        <button class="toggleButton">☰</button>
+        <h2>MENU</h2>
+        <button class="settingsButton" id="minigameButton">Minigames</button>
+        <button class="settingsButton" id="">TEST</button>
+      </div>
+
+      <div id="app">
+        <script type="module" src="/src/main.js"></script>
+        <h2 class="moneyDisplay">Pokedollars: $</h2>
+        <h1 class="title">Poké gotchi !</h1>
+        <div class="subtitle">
+          <h2 class="starterText">Pick your Starter!</h2>
+          <div class="container"></div>
+          <h2 class="subHeader Hidden">Your Pokemon:</h2>
+          <div class="yourPokemon container Hidden"></div>
+        </div>
+      </div>
     </div>
 
-    <div id="app">
-      <script type="module" src="/src/main.js"></script>
-      <h2 class="moneyDisplay">Pokedollars: $</h2>
-      <h1 class="title">Poké gotchi !</h1>
-      <div class="subtitle">
-        <h2 class="starterText">Pick your Starter!</h2>
-        <div class="container"></div>
-        <h2 class="subHeader Hidden">Your Pokemon:</h2>
-        <div class="yourPokemon container Hidden"></div>
-      </div>
+    <div class="minigames Hidden">
+      <button class="closePage"></button>
+      <h2>Minigames!</h2>
     </div>
   </body>
 </html>

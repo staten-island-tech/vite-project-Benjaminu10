@@ -318,7 +318,6 @@ const pokemon = [
 ];
 
 let money = 0;
-let currentPokemon = null;
 
 function updateMoney(amount) {
   document.querySelector(
@@ -331,21 +330,23 @@ money += 500; // Starting money
 updateMoney(money);
 
 const typeColors = {
-  Grass: "#c7f0b3ff",
-  Poison: "#A040A0",
   Fire: "#f58686ff",
   Water: "#9cb5f1ff",
-  Bug: "#A8B820",
-  Normal: "#eeeea6ff",
-  Flying: "#cec2f3ff",
+  Grass: "#c7f0b3ff",
   Electric: "#F8D030",
-  Ground: "#E0C068",
-  Fairy: "#EE99AC",
-  Fighting: "#C03028",
   Psychic: "#F85888",
-  Rock: "#B8A038",
-  Ghost: "#705898",
   Ice: "#98D8D8",
+  Dark: "#666666ff",
+  Fairy: "#EE99AC",
+  Normal: "#eeeea6ff",
+  Fighting: "#C03028",
+  Flying: "#cec2f3ff",
+  Poison: "#A040A0",
+  Ground: "#E0C068",
+  Rock: "#B8A038",
+  Bug: "#A8B820",
+  Ghost: "#705898",
+  Steel: "#A9A9A9",
   Dragon: "#7038F8",
 };
 
@@ -396,11 +397,6 @@ function applyCardBackground(card) {
   } else {
     card.style.backgroundColor = color1;
   }
-}
-
-function evolve(list) {
-  // IF pokemon CAN EVOLVE && LEVEL === evolutionLevel
-  // CHANGE TO NEXT EVOLUTION IN LIST
 }
 
 function updateBackground(pokeType) {
@@ -517,6 +513,22 @@ function setUpLevelButton() {
   });
 }
 
+function setUpMinigameButton() {
+  const button = document.getElementById("minigameButton");
+  button.addEventListener("click", () => {
+    document.querySelector(".main").classList.add("Hidden");
+    document.querySelector(".minigames").classList.remove("Hidden");
+  });
+}
+
+function setUpClosePageButton() {
+  const button = document.querySelector("closePage");
+  button.addEventListener("click", () => {
+    document.querySelector(".main").classList.remove("Hidden");
+    document.querySelector(".minigames").classList.add("Hidden");
+  });
+}
+
 // INITIAL STARTERS
 makeCard(pokemon[0], DOMSelectors.container);
 makeCard(pokemon[3], DOMSelectors.container);
@@ -529,6 +541,8 @@ setupStarterButtons();
 document.querySelector(".toggleButton").addEventListener("click", () => {
   document.querySelector(".sidebar").classList.toggle("open");
 });
+setUpMinigameButton();
+setUpClosePageButton();
 
 // TEMPORARY TO INCREASE LEVELS
 // pokemon.forEach((poke) => makeCard(poke));

@@ -29,7 +29,7 @@ body {
   --type-ice: #55bdbd;
   --type-dark: #705848;
   --type-fairy: #f4adc9;
-  --type-normal: #fffff1;
+  --type-normal: #ffffad;
   --type-fighting: #e75851;
   --type-flying: #d5c9fa;
   --type-poison: #a040a0;
@@ -95,6 +95,8 @@ STEEL??
 
 .sidebar.open {
   left: 0;
+  border: #000000;
+  border-radius: 2px;
 }
 
 .settingsButton {
