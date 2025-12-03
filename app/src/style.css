@@ -137,7 +137,7 @@ body {
   border-color: blue;
   text-align: center;
   margin-top: 20px;
-  text-shadow: 6px 6px 0 #ff0000, 4px 4px 0 #000000;
+  text-shadow: 8px 8px 0 #00043b;
 }
 
 h2 {
@@ -314,6 +314,69 @@ h2 {
 .Hidden {
   display: none;
 }
+
+h3 {
+  font-family: "Press Start 2P";
+  font-size: 48px;
+  color: #333;
+  text-align: center;
+  text-shadow: #ffffff 3px 3px 0;
+  margin: 70px 200px;
+  padding: 20px;
+  background-color: #00000039;
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+  
+}
+
+.trivia {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+  background-color: rgba(85, 98, 76, 0.4);
+  box-shadow: 20px 10px 10px rgba(11, 37, 3, 0.3);
+  margin: 9vh 5vw;
+  border-radius: 12px;
+}
+
+.questionText {
+  font-family: "Press Start 2P";
+  font-size: 32px;
+  color: #333;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.answerButton {
+  font-family: "Press Start 2P";
+  font-size: 16px;
+  padding: 10px 20px;
+  background-color: #ffffff;
+  border: 2px solid #000000;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+  margin: 10px;
+}
+.answerButton:hover {
+  font-size: 20px;
+  transition: all 0.3s ease;
+}
+.answerButton:active {
+  font-size: 14px;
+}
+
+.wrongAnswer {
+  background-color: rgb(255, 106, 106);
+}
+
+.correctAnswer {
+  background-color: #55bd6c;
+}
+
 
 /* 
 Fonts:

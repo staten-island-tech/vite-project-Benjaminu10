@@ -3,6 +3,7 @@ import "./style.css";
 // npm run dev
 // npm run build
 // npm run preview
+import {pokemonTrivia} from "./trivia";
 
 const pokemon = [
   {
@@ -372,7 +373,7 @@ function makeCard(poke, location) {
     `<div class="${cardClasses}" data-primary = "${primaryType}" data-secondary="${secondaryType}" data-id="${
       poke.id - 1
     }">
-            <h3 class="cardPokemon">${poke.name}</h3>
+            <h2 class="cardPokemon">${poke.name}</h2>
             <img src="${poke.sprite}" alt="${poke.name}" />
             <button class="cardButton">Select</button>
             </div>
@@ -439,7 +440,7 @@ function setupStarterButtons() {
       const statsDiv = document.createElement("div");
       statsDiv.classList.add("statsDiv");
       statsDiv.innerHTML = `
-        <h3>${pokemon[index].name} Stats</h3>
+        <h2>${pokemon[index].name} Stats</h2>
         <p>Type: ${pokemon[index].type}</p>
         <p>Hunger: ${pokemon[index].hunger}</p>
         <p>Happiness: ${pokemon[index].happiness}</p>
@@ -482,7 +483,7 @@ function checkEvolution(poke) {
       const statsDiv = document.createElement("div");
       statsDiv.classList.add("statsDiv");
       statsDiv.innerHTML = `
-        <h3>${nextEvolution.name} Stats</h3>
+        <h2>${nextEvolution.name} Stats</h2>
         <p>Type: ${nextEvolution.type}</p>
         <p>Hunger: ${nextEvolution.hunger}</p>
         <p>Happiness: ${nextEvolution.happiness}</p>
@@ -492,7 +493,6 @@ function checkEvolution(poke) {
         <p class = "levelDisplay">Level: ${poke.level}</p>
       `;
       DOMSelectors.container.appendChild(statsDiv);
-      setUpLevelButton();
     }
   }
 }
@@ -508,7 +508,7 @@ function setUpLevelButton() {
     const levelDisplay = document.querySelector(".levelDisplay");
     levelDisplay.textContent = `Level: ${poke.level}`;
     console.log(`${poke.name} leveled up to ${poke.level}`);
-    // Check for evolution
+    // CHECK EVO
     checkEvolution(poke);
   });
 }
@@ -518,31 +518,107 @@ function setUpMinigameButton() {
   button.addEventListener("click", () => {
     document.querySelector(".main").classList.add("Hidden");
     document.querySelector(".minigames").classList.remove("Hidden");
+    document.querySelector(".sidebar").classList.toggle("open");
+    setUpClosePageButton();
   });
 }
 
 function setUpClosePageButton() {
-  const button = document.querySelector("closePage");
+  const button = document.querySelector(".closePage");
   button.addEventListener("click", () => {
-    document.querySelector(".main").classList.remove("Hidden");
     document.querySelector(".minigames").classList.add("Hidden");
+    document.querySelector(".main").classList.remove("Hidden");
+    document.querySelector(".sidebar").classList.toggle("open");
   });
 }
+
+
+// TRIVIA MINIGAME DIVIDER
+
+function makeQuestion(list) {
+  const question = list[Math.floor(Math.random() * list.length)]
+  console.log(question)
+  const container = document.querySelector(".minigamePlayer")
+  container.innerHTML = "";
+   let answersHTML = question.answers
+    .map(
+      (answer) =>
+        `<button class="answerButton" data-answer="${answer}">${answer}</button>`
+    )
+    .join("");
+
+  container.insertAdjacentHTML (
+    "beforeend",
+    `<div class="trivia">
+      <p class="questionText">${question.question}</p>
+      <div class= "answers">${answersHTML}</div>
+    </div>`
+  )
+
+  const buttons = container.querySelectorAll(".answerButton");
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", (event) => {
+      const selected = event.target.textContent;
+      buttons.forEach((btn) => (btn.disabled = true))
+      if (selected === question.correct) {
+        console.log("correct")
+        event.target.classList.add("correctAnswer")
+        money += 250
+        updateMoney(money);
+        container.insertAdjacentHTML (
+        "beforeend", 
+        `<div class="correct">
+        <h2>Correct!</h2>
+        <h2>+250 Pokedollars</h2>
+        </div>
+        `
+        )
+      } else {
+        console.log("wrong")
+        event.target.classList.add("wrongAnswer")
+        container.insertAdjacentHTML (
+        "beforeend", 
+        `<div class="wrong">
+        <h2>Wrong!</h2>
+        </div>
+        `
+      )
+      }
+      setTimeout(() => {
+        container.innerHTML="";
+        makeQuestion(list);
+      }, 3000);
+    });
+  });
+};
+
+
+
 
 // INITIAL STARTERS
 makeCard(pokemon[0], DOMSelectors.container);
 makeCard(pokemon[3], DOMSelectors.container);
 makeCard(pokemon[6], DOMSelectors.container);
 
-//INITIALIZE SIDEBA
+//INITIALIZE SIDEBAR
 
 setupStarterButtons();
 
 document.querySelector(".toggleButton").addEventListener("click", () => {
   document.querySelector(".sidebar").classList.toggle("open");
 });
-setUpMinigameButton();
-setUpClosePageButton();
 
-// TEMPORARY TO INCREASE LEVELS
-// pokemon.forEach((poke) => makeCard(poke));
+setUpMinigameButton();
+
+document.addEventListener("keydown", (event) => {
+  const minigames = document.querySelector(".minigames");
+  const startScreen = document.querySelector(".minigameStart");
+
+  if (minigames && !minigames.classList.contains("Hidden") && event.key === "Enter") {
+    if (startScreen) startScreen.classList.add("Hidden");
+    document.querySelector(".minigamePlayer").classList.remove("Hidden")
+    //START GAME HERE
+  }
+});
+
+makeQuestion(pokemonTrivia);
