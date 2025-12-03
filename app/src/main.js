@@ -3,7 +3,7 @@ import "./style.css";
 // npm run dev
 // npm run build
 // npm run preview
-import {pokemonTrivia} from "./trivia";
+import { pokemonTrivia } from "./trivia";
 
 const pokemon = [
   {
@@ -517,6 +517,7 @@ function setUpMinigameButton() {
   const button = document.getElementById("minigameButton");
   button.addEventListener("click", () => {
     document.querySelector(".main").classList.add("Hidden");
+    document.querySelector(".shop").classList.add("Hidden");
     document.querySelector(".minigames").classList.remove("Hidden");
     document.querySelector(".sidebar").classList.toggle("open");
     setUpClosePageButton();
@@ -527,73 +528,80 @@ function setUpClosePageButton() {
   const button = document.querySelector(".closePage");
   button.addEventListener("click", () => {
     document.querySelector(".minigames").classList.add("Hidden");
+    document.querySelector(".shop").classList.add("Hidden");
     document.querySelector(".main").classList.remove("Hidden");
     document.querySelector(".sidebar").classList.toggle("open");
   });
 }
 
-
 // TRIVIA MINIGAME DIVIDER
 
 function makeQuestion(list) {
-  const question = list[Math.floor(Math.random() * list.length)]
-  console.log(question)
-  const container = document.querySelector(".minigamePlayer")
+  const question = list[Math.floor(Math.random() * list.length)];
+  console.log(question);
+  const container = document.querySelector(".minigamePlayer");
   container.innerHTML = "";
-   let answersHTML = question.answers
+  let answersHTML = question.answers
     .map(
       (answer) =>
         `<button class="answerButton" data-answer="${answer}">${answer}</button>`
     )
     .join("");
 
-  container.insertAdjacentHTML (
+  container.insertAdjacentHTML(
     "beforeend",
     `<div class="trivia">
       <p class="questionText">${question.question}</p>
       <div class= "answers">${answersHTML}</div>
     </div>`
-  )
+  );
 
   const buttons = container.querySelectorAll(".answerButton");
   buttons.forEach((btn) => {
     btn.addEventListener("click", (event) => {
       const selected = event.target.textContent;
-      buttons.forEach((btn) => (btn.disabled = true))
+      buttons.forEach((btn) => (btn.disabled = true));
       if (selected === question.correct) {
-        console.log("correct")
-        event.target.classList.add("correctAnswer")
-        money += 250
+        console.log("correct");
+        event.target.classList.add("correctAnswer");
+        money += 250;
         updateMoney(money);
-        container.insertAdjacentHTML (
-        "beforeend", 
-        `<div class="correct">
+        container.insertAdjacentHTML(
+          "beforeend",
+          `<div class="correct">
         <h2>Correct!</h2>
         <h2>+250 Pokedollars</h2>
         </div>
         `
-        )
+        );
       } else {
-        console.log("wrong")
-        event.target.classList.add("wrongAnswer")
-        container.insertAdjacentHTML (
-        "beforeend", 
-        `<div class="wrong">
+        console.log("wrong");
+        event.target.classList.add("wrongAnswer");
+        container.insertAdjacentHTML(
+          "beforeend",
+          `<div class="wrong">
         <h2>Wrong!</h2>
         </div>
         `
-      )
+        );
       }
       setTimeout(() => {
-        container.innerHTML="";
+        container.innerHTML = "";
         makeQuestion(list);
       }, 3000);
     });
   });
-};
+}
 
-
-
+function setUpShopButton() {
+  const button = document.getElementById("shopButton");
+  button.addEventListener("click", () => {
+    document.querySelector(".main").classList.add("Hidden");
+    document.querySelector(".minigames").classList.add("Hidden");
+    document.querySelector(".shop").classList.remove("Hidden");
+    document.querySelector(".sidebar").classList.toggle("open");
+  });
+}
 
 // INITIAL STARTERS
 makeCard(pokemon[0], DOMSelectors.container);
@@ -609,14 +617,19 @@ document.querySelector(".toggleButton").addEventListener("click", () => {
 });
 
 setUpMinigameButton();
+setUpShopButton();
 
 document.addEventListener("keydown", (event) => {
   const minigames = document.querySelector(".minigames");
   const startScreen = document.querySelector(".minigameStart");
 
-  if (minigames && !minigames.classList.contains("Hidden") && event.key === "Enter") {
+  if (
+    minigames &&
+    !minigames.classList.contains("Hidden") &&
+    event.key === "Enter"
+  ) {
     if (startScreen) startScreen.classList.add("Hidden");
-    document.querySelector(".minigamePlayer").classList.remove("Hidden")
+    document.querySelector(".minigamePlayer").classList.remove("Hidden");
     //START GAME HERE
   }
 });

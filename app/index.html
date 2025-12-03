@@ -8,15 +8,15 @@
     <title>Pokegotchi!</title>
   </head>
   <body>
-       <div class="sidebar">
-        <button class="toggleButton">☰</button>
-        <h2>MENU</h2>
-        <button class="settingsButton" id="minigameButton">Minigames</button>
-        <button class="settingsButton closePage" id="mainButton">Main</button>
-      </div>
-              <h2 class="moneyDisplay">Pokedollars: $</h2>
+    <div class="sidebar">
+      <button class="toggleButton">☰</button>
+      <h2>MENU</h2>
+      <button class="settingsButton" id="minigameButton">Minigames</button>
+      <button class="settingsButton" id="shopButton">Shop</button>
+      <button class="settingsButton closePage" id="mainButton">Main</button>
+    </div>
+    <h2 class="moneyDisplay">Pokedollars: $</h2>
     <div class="main">
-
       <div id="app">
         <script type="module" src="/src/main.js"></script>
         <h1 class="title">Poké gotchi !</h1>
@@ -30,16 +30,17 @@
     </div>
 
     <div class="minigames Hidden">
-
       <div class="minigameStart">
         <h3>Trivia!</h3>
         <h2>Press Enter to Start!</h2>
       </div>
 
-      <div class="minigamePlayer Hidden">
-        
-      </div>
+      <div class="minigamePlayer Hidden"></div>
+    </div>
 
+    <div class="shop Hidden">
+      <h3>Pokemart!</h3>
+      <div class="itemContainer"></div>
     </div>
     <script type="module" src="main.js"></script>
   </body>
