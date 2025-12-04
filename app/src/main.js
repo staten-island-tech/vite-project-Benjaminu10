@@ -613,6 +613,7 @@ function makeItem(item) {
     "beforeend",
     `<div class ="item" data-name = "${item.name}>
     <h2 class="itemName"> ${item.name} </h2>
+    <h2 class="itemPrice"> ${item.price} </h2>
     </div>`
   )
 }
