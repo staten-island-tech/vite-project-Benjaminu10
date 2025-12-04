@@ -4,6 +4,7 @@ import "./style.css";
 // npm run build
 // npm run preview
 import { pokemonTrivia } from "./trivia";
+import { items } from "./shop";
 
 const pokemon = [
   {
@@ -593,6 +594,8 @@ function makeQuestion(list) {
   });
 }
 
+// SHOP STUFF
+
 function setUpShopButton() {
   const button = document.getElementById("shopButton");
   button.addEventListener("click", () => {
@@ -601,6 +604,17 @@ function setUpShopButton() {
     document.querySelector(".shop").classList.remove("Hidden");
     document.querySelector(".sidebar").classList.toggle("open");
   });
+}
+
+function makeItem(item) {
+  const container = document.querySelector(".itemContainer")
+
+  container.insertAdjacentHTML(
+    "beforeend",
+    `<div class ="item" data-name = "${item.name}>
+    <h2 class="itemName"> ${item.name} </h2>
+    </div>`
+  )
 }
 
 // INITIAL STARTERS
@@ -635,3 +649,4 @@ document.addEventListener("keydown", (event) => {
 });
 
 makeQuestion(pokemonTrivia);
+makeItem(items[0]);
