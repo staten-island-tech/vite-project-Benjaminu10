@@ -607,15 +607,16 @@ function setUpShopButton() {
 }
 
 function makeItem(item) {
-  const container = document.querySelector(".itemContainer")
+  const container = document.querySelector(".itemContainer");
 
   container.insertAdjacentHTML(
     "beforeend",
     `<div class ="item" data-name = "${item.name}>
     <h2 class="itemName"> ${item.name} </h2>
     <h2 class="itemPrice"> ${item.price} </h2>
+    <button class="itemButton"> Buy </button>
     </div>`
-  )
+  );
 }
 
 // INITIAL STARTERS
@@ -650,4 +651,4 @@ document.addEventListener("keydown", (event) => {
 });
 
 makeQuestion(pokemonTrivia);
-makeItem(items[0]);
+items.forEach((itm) => makeItem(itm));

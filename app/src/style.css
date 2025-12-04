@@ -326,7 +326,6 @@ h3 {
   background-color: #00000039;
   border-radius: 10px;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
-  
 }
 
 .trivia {
@@ -377,6 +376,59 @@ h3 {
   background-color: #55bd6c;
 }
 
+.itemContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+  background-color: rgba(85, 98, 76, 0.4);
+  box-shadow: 20px 10px 10px rgba(11, 37, 3, 0.3);
+  margin: 9vh 5vw;
+  border-radius: 12px;
+}
+
+.item {
+  width: 22%;
+  min-height: 200px;
+  height: 250px;
+  background-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 20px 10px 10px rgba(11, 37, 3, 0.364);
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border-radius: 12px;
+  border: 3px solid rgb(0, 0, 0);
+  z-index: 1;
+}
+
+.itemButton {
+  font-family: "Press Start 2P";
+  font-size: 12px;
+  padding: 10px 20px;
+  background-color: #ffffff;
+  border: 2px solid #000000;
+  border-radius: 8px;
+  align-self: left;
+  margin: 0px 30px;
+  cursor: pointer;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+.itemButton:hover {
+  background-color: #f0f0f0;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.itemButton:active {
+  font-size: 12px;
+}
 
 /* 
 Fonts:
