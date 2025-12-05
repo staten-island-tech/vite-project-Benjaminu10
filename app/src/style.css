@@ -415,10 +415,10 @@ h3 {
   background-color: #ffffff;
   border: 2px solid #000000;
   border-radius: 8px;
-  margin: 10px;
+
+  margin: 0px 30px;
   cursor: pointer;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
-  display: block;
 }
 
 .itemButton:hover {
@@ -436,7 +436,7 @@ h3 {
 }
 
 .itemPrice {
-  font-size:16px;
+  font-size: 16px;
 }
 
 .itemSprite {
@@ -469,7 +469,7 @@ h3 {
 }
 
 .cartButton.open {
-  right:55px;
+  right: 55px;
   background-color: rgba(255, 255, 255, 0.2);
 }
 
@@ -538,6 +538,23 @@ h3 {
 }
 
 .checkoutButton:active {
+  font-size: 12px;
+}
+
+.inventory {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+  background-color: rgba(85, 98, 76, 0.4);
+  box-shadow: 20px 10px 10px rgba(11, 37, 3, 0.3);
+  margin: 9vh 5vw;
+  border-radius: 12px;
+}
+
+.itemQuantity {
   font-size: 12px;
 }
 

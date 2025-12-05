@@ -322,6 +322,7 @@ const pokemon = [
 let cart = [];
 let total = 0;
 let money = 500;
+let inventory = [];
 
 function updateMoney(amount) {
   document.querySelector(
@@ -621,72 +622,98 @@ function makeItem(item) {
 }
 
 function setUpBuyButton() {
-  const buttons = document.querySelectorAll(".itemButton")
-  const container = document.querySelector(".cartItems")
-  total = 0
-  buttons.forEach(button => {
+  const buttons = document.querySelectorAll(".itemButton");
+  const container = document.querySelector(".cartItems");
+  total = 0;
+  buttons.forEach((button) => {
     button.addEventListener("click", (event) => {
-    const item = event.target.closest(".item");
-    const productName = item.dataset.name
-    const product = items.find(p => p.name === productName)
-    const inCart = cart.find(c => c.name === product.name)
+      const item = event.target.closest(".item");
+      const productName = item.dataset.name;
+      const product = items.find((p) => p.name === productName);
+      const inCart = cart.find((c) => c.name === product.name);
 
-
-    if(inCart) {
-      inCart.quantity++;
-      const existingItem = container.querySelector(`[data-title="${product.name}"]`)
-      console.log(existingItem);
-      existingItem.textContent = `${product.name} x${inCart.quantity}`
-      console.log(inCart.quantity);
-      total = total + product.price
-      document.querySelector(".cartTotal").textContent = `Your total is: $${total}`
-    } else {
-      cart.push({...product, quantity:1});
-      container.insertAdjacentHTML(
-        "beforeend",
-        `<h2 class= "cartItem" data-title="${product.name}">${product.name} x1</h2>`
-        
-      )
-      total = total + product.price
-      document.querySelector(".cartTotal").textContent = `Your total is: $${total}`
-    }
-    console.log(cart);
+      if (inCart) {
+        inCart.quantity++;
+        const existingItem = container.querySelector(
+          `[data-title="${product.name}"]`
+        );
+        console.log(existingItem);
+        existingItem.textContent = `${product.name} x${inCart.quantity}`;
+        console.log(inCart.quantity);
+        total = total + product.price;
+        document.querySelector(
+          ".cartTotal"
+        ).textContent = `Your total is: $${total}`;
+      } else {
+        cart.push({ ...product, quantity: 1 });
+        container.insertAdjacentHTML(
+          "beforeend",
+          `<h2 class= "cartItem" data-title="${product.name}">${product.name} x1</h2>`
+        );
+        total = total + product.price;
+        document.querySelector(
+          ".cartTotal"
+        ).textContent = `Your total is: $${total}`;
+      }
+      console.log(cart);
+    });
   });
-  })
 
-  const checkoutButton = document.querySelector(".checkoutButton")
+  const checkoutButton = document.querySelector(".checkoutButton");
   let clickedOnce = false;
 
   checkoutButton.addEventListener("click", () => {
+    if (!clickedOnce) {
+      clickedOnce = true;
+      checkoutButton.textContent = "Confirm";
+      checkoutButton.classList.add("confirmationButton");
 
-  if (!clickedOnce) {
-    clickedOnce = true;
-    checkoutButton.textContent = "Confirm";
-    checkoutButton.classList.add("confirmationButton");
-
-    setTimeout(() => {
-      clickedOnce = false;
-      checkoutButton.textContent = "Checkout";
-    }, 3000);
-    return;
-  } else {
-    if (money >= total) {
-    money = money-total;
-    cart = [];
-    container.textContent = "";
-    total = 0;
-    document.querySelector(".cartTotal").textContent = `Your total is: $${total}`;
-    updateMoney(money);
-    console.log("test")
-  } else {
-    checkoutButton.textContent = "Not enough Pokedollars";
-  }}
-
-  })
+      setTimeout(() => {
+        clickedOnce = false;
+        checkoutButton.textContent = "Checkout";
+      }, 3000);
+      return;
+    } else {
+      if (money >= total) {
+        cart.forEach((item) => {
+          inventory.push(item);
+        });
+        console.log(inventory);
+        money = money - total;
+        cart = [];
+        container.textContent = "";
+        total = 0;
+        document.querySelector(
+          ".cartTotal"
+        ).textContent = `Your total is: $${total}`;
+        updateMoney(money);
+        updateInventory();
+      } else {
+        checkoutButton.textContent = "Not enough Pokedollars";
+      }
+    }
+  });
 }
 
+function makeInventory(item) {
+  const container = document.querySelector(".inventory");
 
+  container.insertAdjacentHTML(
+    "beforeend",
+    `<div class ="item" data-name = "${item.name}">
+    <h2 class="itemName"> ${item.name} </h2>
+    <img src="${item.sprite}" alt="${item.name}" class ="itemSprite" />
+    <h2 class="itemQuantity">Quantity: x${item.quantity}</h2>
+    </div>`
+  );
+}
 
+function updateInventory() {
+  document.querySelector(".inventory").textContent = "";
+  inventory.forEach((itm) => {
+    makeInventory(itm);
+  });
+}
 
 // INITIAL STARTERS
 makeCard(pokemon[0], DOMSelectors.container);
@@ -703,6 +730,7 @@ document.querySelector(".toggleButton").addEventListener("click", () => {
 
 setUpMinigameButton();
 setUpShopButton();
+setUpClosePageButton();
 
 // TRIVIA
 
@@ -728,7 +756,7 @@ items.forEach((itm) => makeItem(itm));
 
 document.querySelector(".cartButton").addEventListener("click", () => {
   document.querySelector(".cartSlider").classList.toggle("open");
-  document.querySelector(".cartButton").classList.toggle("open")
+  document.querySelector(".cartButton").classList.toggle("open");
 });
 
 setUpBuyButton();
