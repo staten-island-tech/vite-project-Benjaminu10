@@ -161,6 +161,7 @@ h2 {
   box-shadow: 20px 10px 10px rgba(11, 37, 3, 0.3);
   padding: 10px;
   border-radius: 8px;
+  z-index: 2;
 }
 
 .subtitle {
@@ -414,10 +415,10 @@ h3 {
   background-color: #ffffff;
   border: 2px solid #000000;
   border-radius: 8px;
-  align-self: left;
-  margin: 0px 30px;
+  margin: 10px;
   cursor: pointer;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+  display: block;
 }
 
 .itemButton:hover {
@@ -427,6 +428,116 @@ h3 {
 }
 
 .itemButton:active {
+  font-size: 12px;
+}
+
+.itemName {
+  font-size: 20px;
+}
+
+.itemPrice {
+  font-size:16px;
+}
+
+.itemSprite {
+  height: 75px;
+  width: auto;
+}
+
+.cartButton {
+  font-family: "Press Start 2P";
+  font-size: 16px;
+  padding: 10px 20px;
+  background-color: #ffffff;
+  border: 2px solid #000000;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+  margin: 10px;
+  position: fixed;
+  top: 50px;
+  right: 10px;
+  background-color: rgba(85, 98, 76, 0.5);
+  box-shadow: 20px 10px 10px rgba(11, 37, 3, 0.3);
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.cartButton:active {
+  font-size: 14px;
+  right: 0px;
+}
+
+.cartButton.open {
+  right:55px;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.cartButton:hover {
+  font-size: 20px;
+  right: 35px;
+  transition: all 0.3s ease;
+}
+
+.cartSlider {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  width: 250px;
+  height: 100vh;
+  background: rgba(85, 98, 76, 0.4);
+  border-color: #000000;
+  border-width: 20px;
+  color: white;
+  position: fixed;
+  right: -300px;
+  top: 0;
+  padding: 125px 26px;
+  transition: 0.3s;
+  z-index: 999;
+}
+
+.cartSlider.open {
+  right: 0;
+  border: #000000;
+}
+
+.cartItem {
+  font-size: 18px;
+  color: rgb(226, 226, 226);
+  text-shadow: 4px 4px #000000;
+}
+
+.cartTotal {
+  font-size: 14px;
+  color: rgb(255, 255, 255);
+  text-shadow: 2px 2px #000000;
+}
+
+.checkoutButton {
+  font-family: "Press Start 2P";
+  font-size: 16px;
+  display: block;
+  padding: 10px 10px;
+  background-color: #ffffff;
+  border: 2px solid #000000;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+  margin: 10px;
+  background-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 20px 10px 10px rgba(11, 37, 3, 0.3);
+  border-radius: 8px;
+}
+
+.checkoutButton:hover {
+  background-color: #f0f0f0;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.checkoutButton:active {
   font-size: 12px;
 }
 
