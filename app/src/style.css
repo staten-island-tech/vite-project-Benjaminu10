@@ -303,6 +303,31 @@ h2 {
   font-size: 12px;
 }
 
+.buttonDiv {
+  display: flex;
+  flex-direction: column;
+}
+
+.actionButton {
+  font-family: "Press Start 2P";
+  font-size: 16px;
+  padding: 10px 50px;
+  background-color: #ffffff;
+  border: 2px solid #000000;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+  margin: 10px;
+}
+.actionButton:hover {
+  width: 185px;
+  font-size: 18px;
+}
+
+.actionButton:active {
+  font-size: 14px;
+}
+
 .subHeader {
   font-family: "Press Start 2P";
   font-size: 24px;
@@ -327,6 +352,21 @@ h3 {
   background-color: #00000039;
   border-radius: 10px;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+.smallText {
+  font-size: 8px;
+  width: 185px;
+  padding: 10px;
+}
+.smallText:hover {
+  font-size: 8px;
+  width: 185px;
+}
+
+.smallText:active {
+  font-size: 8px;
+  width: 185px;
 }
 
 .trivia {
@@ -444,6 +484,10 @@ h3 {
   width: auto;
 }
 
+.itemDesc {
+  font-size: 12px;
+}
+
 .cartButton {
   font-family: "Press Start 2P";
   font-size: 16px;
@@ -546,6 +590,7 @@ h3 {
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
+  height: auto;
   gap: 20px;
   padding: 20px;
   background-color: rgba(85, 98, 76, 0.4);

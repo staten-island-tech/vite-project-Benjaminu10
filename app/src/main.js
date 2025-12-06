@@ -323,6 +323,7 @@ let cart = [];
 let total = 0;
 let money = 500;
 let inventory = [];
+let currentPokemon = null
 
 function updateMoney(amount) {
   document.querySelector(
@@ -408,6 +409,49 @@ function updateBackground(pokeType) {
   document.body.style.backgroundColor = color;
 }
 
+function lowerStats(poke) {
+  const stats = ["hunger","happiness","energy","health"]
+  const randomStat = stats[Math.floor(Math.random()*stats.length)]
+  const random = Math.floor(Math.random()*6)
+  poke[randomStat] = poke[randomStat] - random
+  if (poke[randomStat] <0) {
+    poke[randomStat = 0]
+  }
+  updateStatsUI(poke)
+  console.log(poke[randomStat]);
+}
+
+function updateStatsUI (pokemon) {
+  const statsDiv = document.querySelector(".statsDiv")
+  statsDiv.innerHTML = `
+    <h2>${pokemon.name} Stats</h2>
+    <p>Type: ${pokemon.type}</p>
+    <p class = "hungerDisplay">Hunger: ${pokemon.hunger}</p>
+    <p class = "happinessDisplay">Happiness: ${pokemon.happiness}</p>
+    <p class = "energyDisplay">Energy: ${pokemon.energy}</p>
+    <p class = "healthDisplay">Health: ${pokemon.health}</p>
+    <button class="levelButton">TEMPORARY</button>
+    <p class = "levelDisplay">Level: ${pokemon.level}</p>
+    `;
+  setUpLevelButton();
+}
+
+function startDecay () {
+  let time = 3000
+  function decayLoop() {
+    if (!currentPokemon) return;
+
+    lowerStats(currentPokemon);
+
+    time = (Math.floor(Math.random()*7)+3)*1000;
+    console.log(time);
+    
+    setTimeout(decayLoop,time);
+  }
+
+  decayLoop();
+}
+
 function setupStarterButtons() {
   const buttons = document.querySelectorAll(".cardButton");
 
@@ -420,7 +464,7 @@ function setupStarterButtons() {
       if (!clickedOnce) {
         clickedOnce = true;
         button.textContent = "Are you sure?";
-        button.classList.add(confirmationButton);
+        button.classList.add("confirmationButton");
 
         setTimeout(() => {
           clickedOnce = false;
@@ -432,10 +476,10 @@ function setupStarterButtons() {
       DOMSelectors.container.innerHTML = "";
       const index = event.target.closest(".card").getAttribute("data-id");
       makeCard(pokemon[index], DOMSelectors.container);
-      makeCard(pokemon[index], DOMSelectors.yourPokemon);
+      currentPokemon = pokemon[index];
+
       // REMOVE SELECT BUTTON
       DOMSelectors.container.firstChild.querySelector(".cardButton").remove();
-      DOMSelectors.yourPokemon.firstChild.querySelector(".cardButton").remove();
       // REMOVE PICK YOUR STARTER TEXT
       document.querySelector(".starterText").remove();
       // SHOW STARTER STATS
@@ -444,20 +488,31 @@ function setupStarterButtons() {
       statsDiv.innerHTML = `
         <h2>${pokemon[index].name} Stats</h2>
         <p>Type: ${pokemon[index].type}</p>
-        <p>Hunger: ${pokemon[index].hunger}</p>
-        <p>Happiness: ${pokemon[index].happiness}</p>
-        <p>Energy: ${pokemon[index].energy}</p>
-        <p>Health: ${pokemon[index].health}</p>
+        <p class = "hungerDisplay">Hunger: ${pokemon[index].hunger}</p>
+        <p class = "happinessDisplay">Happiness: ${pokemon[index].happiness}</p>
+        <p class = "energyDisplay">Energy: ${pokemon[index].energy}</p>
+        <p class = "healthDisplay">Health: ${pokemon[index].health}</p>
         <button class="levelButton">TEMPORARY</button>
         <p class = "levelDisplay">Level: ${pokemon[index].level}</p>
       `;
       // Update background color based on type
       updateBackground(pokemon[index].type);
       DOMSelectors.container.appendChild(statsDiv);
+
+      const buttonDiv = document.createElement("div");
+      buttonDiv.classList.add("buttonDiv");
+      buttonDiv.innerHTML = `
+      <button class="actionButton" id="feedButton">Feed</button>
+      <button class="actionButton" id="playButton">Play</button>
+      <button class="actionButton" id="sleepButton">Sleep</button>
+      `
+      DOMSelectors.container.appendChild(buttonDiv);
       // REVEAL NEW STUFF
       document.querySelector(".subHeader").classList.remove("Hidden");
-      document.querySelector(".yourPokemon").classList.remove("Hidden");
       setUpLevelButton();
+      setUpFeedButton();
+      setUpPlayButton();
+      setTimeout(startDecay,3000);
     });
   });
 }
@@ -466,20 +521,20 @@ function checkEvolution(poke) {
   if (poke.canEvolve && poke.level >= poke.levelRequirement) {
     const nextEvolution = pokemon.find((p) => p.id === poke.evolvesTo);
     if (nextEvolution) {
-      nextEvolution.level = poke.level; // Carry over the level to the new evolution
+      nextEvolution.level = poke.level
+      nextEvolution.hunger = poke.hunger
+      nextEvolution.happiness = poke.happiness
+      nextEvolution.energy = poke.energy
+      nextEvolution.health = poke.health
+      currentPokemon = nextEvolution
       console.log(`${poke.name} is evolving into ${nextEvolution.name}!`);
       // Update the card to show the new evolution
       DOMSelectors.container.innerHTML = "";
-      DOMSelectors.yourPokemon.innerHTML = "";
       makeCard(nextEvolution, DOMSelectors.container);
-      makeCard(nextEvolution, DOMSelectors.yourPokemon);
       //remove the select button if it exists
       const selectButton = DOMSelectors.container.querySelector(".cardButton");
-      const selectButtonYourPokemon =
-        DOMSelectors.yourPokemon.querySelector(".cardButton");
-      if (selectButton || selectButtonYourPokemon) {
+      if (selectButton) {
         selectButton.remove();
-        selectButtonYourPokemon.remove();
       }
       // Update stats display
       const statsDiv = document.createElement("div");
@@ -487,23 +542,85 @@ function checkEvolution(poke) {
       statsDiv.innerHTML = `
         <h2>${nextEvolution.name} Stats</h2>
         <p>Type: ${nextEvolution.type}</p>
-        <p>Hunger: ${nextEvolution.hunger}</p>
-        <p>Happiness: ${nextEvolution.happiness}</p>
-        <p>Energy: ${nextEvolution.energy}</p>
-        <p>Health: ${nextEvolution.health}</p>
+        <p class = "hungerDisplay">Hunger: ${nextEvolution.hunger}</p>
+        <p class = "happinessDisplay">Happiness: ${nextEvolution.happiness}</p>
+        <p class = "energyDisplay">Energy: ${nextEvolution.energy}</p>
+        <p class = "healthDisplay">Health: ${nextEvolution.health}</p>
         <button class="levelButton">TEMPORARY</button>
         <p class = "levelDisplay">Level: ${poke.level}</p>
       `;
       DOMSelectors.container.appendChild(statsDiv);
+
+      const buttonDiv = document.createElement("div");
+      buttonDiv.classList.add("buttonDiv");
+      buttonDiv.innerHTML = `
+      <button class="actionButton" id="feedButton">Feed</button>
+      <button class="actionButton" id="playButton">Play</button>
+      <button class="actionButton" id="sleepButton">Sleep</button>
+      `
+      DOMSelectors.container.appendChild(buttonDiv);
+      setUpLevelButton();
+      setUpFeedButton();
+      setUpPlayButton();
+      console.log(currentPokemon);
+
+      startDecay();
     }
   }
 }
 
+function setUpFeedButton() {
+  const feedButton = document.getElementById("feedButton");
+  feedButton.addEventListener("click", () => {
+    const pokemonName = currentPokemon.name
+    const poke = pokemon.find((p) => p.name === pokemonName);
+    if (poke.hunger < 100) {
+      poke.hunger = poke.hunger + 1;
+      const hungerDisplay = document.querySelector(".hungerDisplay")
+      hungerDisplay.textContent = `Hunger: ${poke.hunger}`
+    } else {
+      feedButton.innerHTML = `${poke.name}'s Hunger is maxed!`;
+      feedButton.classList.add("smallText");
+      setTimeout(() => {
+        feedButton.innerHTML = `Feed`;
+        feedButton.classList.remove("smallText");
+      }, 3000);
+    }      
+  })
+}
+
+function setUpSleepButton () {
+  // TOGGLE NOT SINGULAR CLICK USE VARIBALE FOR TOGGLE ON CLICK
+}
+
+function setUpPlayButton() {
+  const playButton = document.getElementById("playButton");
+  playButton.addEventListener("click", () => {
+
+    const pokemonName = document
+      .querySelector(".statsDiv h2")
+      .textContent.split(" ")[0];
+    const poke = pokemon.find((p) => p.name === pokemonName);
+    if (poke.happiness < 100) {
+      poke.happiness = poke.happiness + 1;
+      const happinessDisplay = document.querySelector(".happinessDisplay")
+      happinessDisplay.textContent = `Happiness: ${poke.happiness}`
+    } else {
+      playButton.innerHTML = `${poke.name}'s Happiness is maxed!`;
+      playButton.classList.add("smallText");
+      setTimeout(() => {
+        playButton.innerHTML = `Play`;
+        playButton.classList.remove("smallText");
+      }, 3000);      
+    }
+  })
+}
+
 function setUpLevelButton() {
   const levelButton = document.querySelector(".levelButton");
-  levelButton.addEventListener("click", (event) => {
+  levelButton.addEventListener("click", () => {
     const pokemonName = document
-      .querySelector(".statsDiv h3")
+      .querySelector(".statsDiv h2")
       .textContent.split(" ")[0];
     const poke = pokemon.find((p) => p.name === pokemonName);
     poke.level = (poke.level || 1) + 1;
@@ -616,6 +733,7 @@ function makeItem(item) {
     <h2 class="itemName"> ${item.name} </h2>
     <img src="${item.sprite}" alt="${item.name}" class ="itemSprite" />
     <h2 class="itemPrice"> $${item.price} </h2>
+    <h2 class="itemDesc"> ${item.desc} </h2>
     <button class="itemButton"> Add to Cart </button>
     </div>`
   );
@@ -703,9 +821,12 @@ function makeInventory(item) {
     `<div class ="item" data-name = "${item.name}">
     <h2 class="itemName"> ${item.name} </h2>
     <img src="${item.sprite}" alt="${item.name}" class ="itemSprite" />
+    <h2 class="itemDesc"> ${item.desc} </h2>
     <h2 class="itemQuantity">Quantity: x${item.quantity}</h2>
+    <button class="actionButton" id="useItem" data-name=${item.name}>Use</button>
     </div>`
   );
+  inventoryUse();
 }
 
 function updateInventory() {
@@ -713,6 +834,28 @@ function updateInventory() {
   inventory.forEach((itm) => {
     makeInventory(itm);
   });
+  inventoryUse();
+}
+
+function inventoryUse() {
+  const buttons = document.querySelectorAll('[id="useItem"]')
+  console.log(buttons)
+  buttons.forEach(btn => {
+    btn.addEventListener("click", (event) => {
+    const item = inventory.find(itm => itm.name === event.target.dataset.name)
+    console.log(event.target.dataset.name);
+    console.log(item);
+    if(!currentPokemon) {
+      if(item.type === "Heal") {
+        console.log("test")
+/*       } elif (item.type === "Level Up") {
+
+      } elif (item.type === "Revive") {
+
+      } */
+    }}
+    })
+  })
 }
 
 // INITIAL STARTERS
@@ -757,6 +900,7 @@ items.forEach((itm) => makeItem(itm));
 document.querySelector(".cartButton").addEventListener("click", () => {
   document.querySelector(".cartSlider").classList.toggle("open");
   document.querySelector(".cartButton").classList.toggle("open");
+  console.log("test")
 });
 
 setUpBuyButton();
