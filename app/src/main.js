@@ -273,15 +273,47 @@ function renderCurrentPokemon(poke) {
   document.querySelector(".starterText").remove();
   const statsDiv = document.createElement("div");
   statsDiv.classList.add("statsDiv");
-  statsDiv.innerHTML = `
-    <h2>${poke.name} Stats</h2>
-    <p>Type: ${poke.type}</p>
-    <p class = "hungerDisplay">Hunger: ${poke.hunger}</p>
-    <p class = "happinessDisplay">Happiness: ${poke.happiness}</p>
-    <p class = "energyDisplay">Energy: ${poke.energy}</p>
-    <p class = "healthDisplay">Health: ${poke.health}</p>
-    <p class = "levelDisplay">Level: ${poke.level}</p>
-  `;
+  if (!statsDiv) return;
+
+statsDiv.innerHTML = `
+  <h2 class="statsTitle">${currentPokemon.name} Stats</h2>
+
+  <div class="statsLeft">
+    <div class="typeRow">
+      <span class="statLabel">Type:</span>
+      <span class="statValue">${currentPokemon.type}</span>
+    </div>
+
+    <div class="statsRow">
+      <span class="statLabel">Hunger:</span>
+      <span class="statValue">${currentPokemon.hunger}</span>
+      <div class="pokeBar"><div class="pokeFill" style="--value:${currentPokemon.hunger}%"></div></div>
+    </div>
+
+    <div class="statsRow">
+      <span class="statLabel">Happiness:</span>
+      <span class="statValue">${currentPokemon.happiness}</span>
+      <div class="pokeBar"><div class="pokeFill" style="--value:${currentPokemon.happiness}%"></div></div>
+    </div>
+
+    <div class="statsRow">
+      <span class="statLabel">Energy:</span>
+      <span class="statValue">${currentPokemon.energy}</span>
+      <div class="pokeBar"><div class="pokeFill" style="--value:${currentPokemon.energy}%"></div></div>
+    </div>
+
+    <div class="statsRow">
+      <span class="statLabel">Health:</span>
+      <span class="statValue">${currentPokemon.health}</span>
+      <div class="pokeBar"><div class="pokeFill" style="--value:${currentPokemon.health}%"></div></div>
+    </div>
+
+    <div class="typeRow">
+      <span class="statLabel">Level:</span>
+      <span class="statValue">${currentPokemon.level}</span>
+    </div>
+  </div>
+`;
   DOMSelectors.container.appendChild(statsDiv);
 
   const buttonDiv = document.createElement("div");
@@ -359,7 +391,6 @@ function lowerStats(poke) {
   if (poke[randomStat] < 0) poke[randomStat] = 0;
   updateStatsUI(poke)
   console.log(poke[randomStat]);
-  saveState();
 }
 
 function updateStatsUI(pokemon) {
@@ -405,6 +436,7 @@ function updateStatsUI(pokemon) {
     </div>
   </div>
 `;
+  saveState();
 }
 
 let decayTimeout = null;
@@ -540,10 +572,13 @@ function checkEvolution(poke) {
       <button class="actionButton" id="sleepButton">Sleep</button>
       `
       DOMSelectors.container.appendChild(buttonDiv);
+      updateBackground(poke.type);
       setUpFeedButton();
       setUpPlayButton();
-      console.log(currentPokemon);
-      saveState();
+      setUpSleepButton();
+      setTimeout(() => {
+      restartDecay();
+      }, 3000);
     }
   }
 }
@@ -555,8 +590,7 @@ function setUpFeedButton() {
     const poke = pokemon.find((p) => p.name === pokemonName);
     if (poke.hunger < 100) {
       poke.hunger = poke.hunger + 1;
-      const hungerDisplay = document.querySelector(".hungerDisplay")
-      hungerDisplay.textContent = `Hunger: ${poke.hunger}`
+      updateStatsUI();
       saveState();
     } else {
       feedButton.innerHTML = `${poke.name}'s Hunger is maxed!`;
@@ -631,8 +665,7 @@ function setUpPlayButton() {
     const poke = pokemon.find((p) => p.name === pokemonName);
     if (poke.happiness < 100) {
       poke.happiness = poke.happiness + 1;
-      const happinessDisplay = document.querySelector(".happinessDisplay")
-      happinessDisplay.textContent = `Happiness: ${poke.happiness}`
+      updateStatsUI();
       saveState();
     } else {
       playButton.innerHTML = `${poke.name}'s Happiness is maxed!`;
@@ -941,6 +974,7 @@ function inventoryUse() {
           currentPokemon.level + item.value
         );
         item.quantity = item.quantity - 1;
+        checkEvolution(currentPokemon);
         updateStatsUI(currentPokemon);
       }
     } else if (item.type === "Revive") {
