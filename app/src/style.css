@@ -318,14 +318,14 @@ h2 {
   cursor: pointer;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
   margin: 10px;
+
 }
 .actionButton:hover {
-  width: 185px;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .actionButton:active {
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .subHeader {
@@ -339,6 +339,20 @@ h2 {
 
 .Hidden {
   display: none;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.status {
+  background-color: #8d8d8d;
+  color: white;
+  font-size: 14px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  box-shadow: 4px 4px#333;
 }
 
 h3 {
@@ -355,17 +369,17 @@ h3 {
 }
 
 .smallText {
-  font-size: 8px;
+  font-size: 13px;
   width: 185px;
   padding: 10px;
 }
 .smallText:hover {
-  font-size: 8px;
+  font-size: 13px;
   width: 185px;
 }
 
 .smallText:active {
-  font-size: 8px;
+  font-size: 13px;
   width: 185px;
 }
 
@@ -601,6 +615,116 @@ h3 {
 
 .itemQuantity {
   font-size: 12px;
+}
+
+.useItem {
+  font-family: "Press Start 2P";
+  font-size: 12px;
+  padding: 10px 20px;
+  background-color: #ffffff;
+  border: 2px solid #000000;
+  border-radius: 8px;
+
+  margin: 0px 30px;
+  cursor: pointer;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+.useItem:hover {
+  background-color: #f0f0f0;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.useItem:active {
+  font-size: 12px;
+}
+
+.statsDiv {
+  width: 60%;
+  min-width: 320px;
+  margin: 0 auto;
+  color: #111;
+}
+
+.statsTitle {
+  font-family: "Press Start 2P";
+  font-size: 32px;
+  text-align: left;
+  margin: 20px 0 18px 0;
+  color: #2b2b2b;
+}
+
+.statsLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-left: 10px;
+}
+
+.statsRow,
+.typeRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: "Press Start 2P";
+  font-size: 12px;
+}
+
+.statLabel {
+  min-width: 95px;
+  text-align: left;
+  color: #0d0d0d;
+}
+
+.statValue {
+  min-width: 30px;
+  text-align: left;
+  color: #0d0d0d;
+}
+
+
+@media (max-width: 900px) {
+  .statsDiv {
+    width: 90%;
+  }
+
+  .progressBar {
+    width: 50%;
+  }
+
+  .statLabel {
+    min-width: 80px;
+    font-size: 10px;
+  }
+
+  .statValue {
+    min-width: 24px;
+    font-size: 10px;
+  }
+
+  .statsTitle {
+    font-size: 20px;
+  }
+}
+
+.pokeBar {
+  width: 46%;
+  height: 14px;
+  border: 2px solid #222;
+  background: #666;
+  border-radius: 3px;
+  overflow: hidden;
+  position: relative;
+  image-rendering: pixelated;
+}
+
+.pokeFill {
+  height: 100%;
+  width: var(--value);
+  background:#2e8b3a;
+  transition: width 0.15s linear;
+  border-radius: 2px;
 }
 
 /* 

@@ -262,7 +262,7 @@ export const pokemonTrivia = [
   {
     question: "Which Pokémon is known as the 'Tiny Leaf Pokémon'?",
     answers: ["Chikorita", "Bellsprout", "Oddish", "Petilil"],
-    correct: "Chikorita"
+    correct: "Chikorita" 
   },
   {
     question: "Which Pokémon evolves into Alakazam?",

@@ -147,176 +147,6 @@ const pokemon = [
     energy: 100,
     health: 100,
   },
-
-  {
-    id: 10,
-    name: "Caterpie",
-    type: "Bug",
-    sprite:
-      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10.png",
-    canEvolve: true,
-    evolvesTo: 11,
-    levelRequirement: 7,
-    items: { item1: "none" },
-    hunger: 100,
-    happiness: 100,
-    energy: 100,
-    health: 100,
-  },
-  {
-    id: 11,
-    name: "Metapod",
-    type: "Bug",
-    sprite:
-      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/11.png",
-    canEvolve: true,
-    evolvesTo: 12,
-    levelRequirement: 10,
-    items: { item1: "none" },
-    hunger: 100,
-    happiness: 100,
-    energy: 100,
-    health: 100,
-  },
-  {
-    id: 12,
-    name: "Butterfree",
-    type: "Bug/Flying",
-    sprite:
-      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/12.png",
-    canEvolve: false,
-    evolvesTo: null,
-    levelRequirement: null,
-    items: { item1: "none" },
-    hunger: 100,
-    happiness: 100,
-    energy: 100,
-    health: 100,
-  },
-
-  {
-    id: 13,
-    name: "Weedle",
-    type: "Bug/Poison",
-    sprite:
-      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/13.png",
-    canEvolve: true,
-    evolvesTo: 14,
-    levelRequirement: 7,
-    items: { item1: "none" },
-    hunger: 100,
-    happiness: 100,
-    energy: 100,
-    health: 100,
-  },
-  {
-    id: 14,
-    name: "Kakuna",
-    type: "Bug/Poison",
-    sprite:
-      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/14.png",
-    canEvolve: true,
-    evolvesTo: 15,
-    levelRequirement: 10,
-    items: { item1: "none" },
-    hunger: 100,
-    happiness: 100,
-    energy: 100,
-    health: 100,
-  },
-  {
-    id: 15,
-    name: "Beedrill",
-    type: "Bug/Poison",
-    sprite:
-      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/15.png",
-    canEvolve: false,
-    evolvesTo: null,
-    levelRequirement: null,
-    items: { item1: "none" },
-    hunger: 100,
-    happiness: 100,
-    energy: 100,
-    health: 100,
-  },
-
-  {
-    id: 16,
-    name: "Pidgey",
-    type: "Normal/Flying",
-    sprite:
-      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/16.png",
-    canEvolve: true,
-    evolvesTo: 17,
-    levelRequirement: 18,
-    items: { item1: "none" },
-    hunger: 100,
-    happiness: 100,
-    energy: 100,
-    health: 100,
-  },
-  {
-    id: 17,
-    name: "Pidgeotto",
-    type: "Normal/Flying",
-    sprite:
-      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/17.png",
-    canEvolve: true,
-    evolvesTo: 18,
-    levelRequirement: 36,
-    items: { item1: "none" },
-    hunger: 100,
-    happiness: 100,
-    energy: 100,
-    health: 100,
-  },
-  {
-    id: 18,
-    name: "Pidgeot",
-    type: "Normal/Flying",
-    sprite:
-      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/18.png",
-    canEvolve: false,
-    evolvesTo: null,
-    levelRequirement: null,
-    items: { item1: "none" },
-    hunger: 100,
-    happiness: 100,
-    energy: 100,
-    health: 100,
-  },
-
-  {
-    id: 19,
-    name: "Rattata",
-    type: "Normal",
-    sprite:
-      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/19.png",
-    canEvolve: true,
-    evolvesTo: 20,
-    levelRequirement: 20,
-    items: { item1: "none" },
-    hunger: 100,
-    happiness: 100,
-    energy: 100,
-    health: 100,
-  },
-  {
-    id: 20,
-    name: "Raticate",
-    type: "Normal",
-    sprite:
-      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/20.png",
-    canEvolve: false,
-    evolvesTo: null,
-    levelRequirement: null,
-    items: { item1: "none" },
-    hunger: 100,
-    happiness: 100,
-    energy: 100,
-    health: 100,
-    level: 5,
-  },
 ];
 
 let cart = [];
@@ -325,10 +155,13 @@ let money = 500;
 let inventory = [];
 let currentPokemon = null
 
+loadState();
+
 function updateMoney(amount) {
   document.querySelector(
     ".moneyDisplay"
   ).textContent = `Pokedollars: $${amount}`;
+  saveState();
 }
 
 updateMoney(money);
@@ -361,7 +194,116 @@ const DOMSelectors = {
   yourPokemon: document.querySelector(".yourPokemon"),
 };
 
-// create card function
+function saveState() {
+  const state = {
+    money,
+    cart,
+    inventory: inventory.map(item => ({
+      name: item.name,
+      type: item.type,
+      value: item.value,
+      quantity: item.quantity,
+      sprite: item.sprite,
+      desc: item.desc
+    })),
+    pokemon: pokemon.map((poke) => ({
+      id: poke.id,
+      level: poke.level,
+      hunger: poke.hunger,
+      happiness: poke.happiness,
+      energy: poke.energy,
+      health: poke.health
+    })),
+    currentPokemonId: currentPokemon ? currentPokemon.id : null
+  };
+  console.log(state);
+  try {
+    localStorage.setItem("pokedata", JSON.stringify(state));
+    console.log("Saved");
+  } catch (e) {
+    console.warn("Could not save state:", e)
+  }
+}
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem("pokedata");
+    if (!raw) return;
+    const state = JSON.parse(raw);
+
+    if (typeof state.money === "number") money = state.money;
+    if (Array.isArray(state.cart)) cart = state.cart;
+    if (Array.isArray(state.inventory)) inventory = state.inventory.map(i => ({ ...i }));
+
+    if (Array.isArray(state.pokemon)) {
+      state.pokemon.forEach(saved => {
+        const poke = pokemon.find(p => p.id === saved.id);
+        if (poke) {
+          poke.level = saved.level ?? poke.level;
+          poke.hunger = saved.hunger ?? poke.hunger;
+          poke.happiness = saved.happiness ?? poke.happiness;
+          poke.energy = saved.energy ?? poke.energy;
+          poke.health = saved.health ?? poke.health;
+        }
+      });
+    }
+
+    if (state.currentPokemonId != null) {
+      currentPokemon = pokemon.find(p => p.id === state.currentPokemonId) || null;
+      if (currentPokemon) renderCurrentPokemon(currentPokemon);
+    }
+
+    updateMoney(money);
+    updateInventory();
+      if (state.currentPokemonId) {
+    currentPokemon = pokemon.find(mon => mon.id === state.currentPokemonId)
+    if (currentPokemon) {
+      renderCurrentPokemon(currentPokemon);
+    }
+  }
+  } catch (e) {
+    console.warn("Could not load state:", e);
+  }
+}
+
+function renderCurrentPokemon(poke) {
+  DOMSelectors.container.innerHTML = "";
+  makeCard(pokemon[currentPokemon.id - 1], DOMSelectors.container);
+  DOMSelectors.container.firstChild.querySelector(".cardButton").remove();
+  document.querySelector(".starterText").remove();
+  const statsDiv = document.createElement("div");
+  statsDiv.classList.add("statsDiv");
+  statsDiv.innerHTML = `
+    <h2>${poke.name} Stats</h2>
+    <p>Type: ${poke.type}</p>
+    <p class = "hungerDisplay">Hunger: ${poke.hunger}</p>
+    <p class = "happinessDisplay">Happiness: ${poke.happiness}</p>
+    <p class = "energyDisplay">Energy: ${poke.energy}</p>
+    <p class = "healthDisplay">Health: ${poke.health}</p>
+    <p class = "levelDisplay">Level: ${poke.level}</p>
+  `;
+  DOMSelectors.container.appendChild(statsDiv);
+
+  const buttonDiv = document.createElement("div");
+  buttonDiv.classList.add("buttonDiv");
+  buttonDiv.innerHTML = `
+    <button class="actionButton" id="feedButton">Feed</button>
+    <button class="actionButton" id="playButton">Play</button>
+    <button class="actionButton" id="sleepButton">Sleep</button>
+  `;
+  DOMSelectors.container.appendChild(buttonDiv);
+
+  updateBackground(poke.type);
+  setUpFeedButton();
+  setUpPlayButton();
+  setUpSleepButton();
+  setTimeout(() => {
+    restartDecay();
+    }, 3000);
+}
+
+
+
 function makeCard(poke, location) {
   const types = poke.type.split("/");
   const primaryType = types[0];
@@ -413,44 +355,81 @@ function lowerStats(poke) {
   const stats = ["hunger","happiness","energy","health"]
   const randomStat = stats[Math.floor(Math.random()*stats.length)]
   const random = Math.floor(Math.random()*6)
-  poke[randomStat] = poke[randomStat] - random
-  if (poke[randomStat] <0) {
-    poke[randomStat = 0]
-  }
+  poke[randomStat] = (poke[randomStat]||0) - random
+  if (poke[randomStat] < 0) poke[randomStat] = 0;
   updateStatsUI(poke)
   console.log(poke[randomStat]);
+  saveState();
 }
 
-function updateStatsUI (pokemon) {
-  const statsDiv = document.querySelector(".statsDiv")
-  statsDiv.innerHTML = `
-    <h2>${pokemon.name} Stats</h2>
-    <p>Type: ${pokemon.type}</p>
-    <p class = "hungerDisplay">Hunger: ${pokemon.hunger}</p>
-    <p class = "happinessDisplay">Happiness: ${pokemon.happiness}</p>
-    <p class = "energyDisplay">Energy: ${pokemon.energy}</p>
-    <p class = "healthDisplay">Health: ${pokemon.health}</p>
-    <button class="levelButton">TEMPORARY</button>
-    <p class = "levelDisplay">Level: ${pokemon.level}</p>
-    `;
-  setUpLevelButton();
+function updateStatsUI(pokemon) {
+  const statsDiv = document.querySelector(".statsDiv");
+  if (!statsDiv) return;
+
+ statsDiv.innerHTML = `
+  <h2 class="statsTitle">${pokemon.name} Stats</h2>
+
+  <div class="statsLeft">
+    <div class="typeRow">
+      <span class="statLabel">Type:</span>
+      <span class="statValue">${pokemon.type}</span>
+    </div>
+
+    <div class="statsRow">
+      <span class="statLabel">Hunger:</span>
+      <span class="statValue">${pokemon.hunger}</span>
+      <div class="pokeBar"><div class="pokeFill" style="--value:${pokemon.hunger}%"></div></div>
+    </div>
+
+    <div class="statsRow">
+      <span class="statLabel">Happiness:</span>
+      <span class="statValue">${pokemon.happiness}</span>
+      <div class="pokeBar"><div class="pokeFill" style="--value:${pokemon.happiness}%"></div></div>
+    </div>
+
+    <div class="statsRow">
+      <span class="statLabel">Energy:</span>
+      <span class="statValue">${pokemon.energy}</span>
+      <div class="pokeBar"><div class="pokeFill" style="--value:${pokemon.energy}%"></div></div>
+    </div>
+
+    <div class="statsRow">
+      <span class="statLabel">Health:</span>
+      <span class="statValue">${pokemon.health}</span>
+      <div class="pokeBar"><div class="pokeFill" style="--value:${pokemon.health}%"></div></div>
+    </div>
+
+    <div class="typeRow">
+      <span class="statLabel">Level:</span>
+      <span class="statValue">${pokemon.level}</span>
+    </div>
+  </div>
+`;
 }
 
-function startDecay () {
-  let time = 3000
+let decayTimeout = null;
+
+function startDecay() {
+  if (!currentPokemon) return;
+
   function decayLoop() {
     if (!currentPokemon) return;
 
     lowerStats(currentPokemon);
 
-    time = (Math.floor(Math.random()*7)+3)*1000;
-    console.log(time);
-    
-    setTimeout(decayLoop,time);
+    const nextTime = (Math.floor(Math.random() * 7) + 3) * 1000;
+    decayTimeout = setTimeout(decayLoop, nextTime);
   }
 
+  if (decayTimeout) clearTimeout(decayTimeout);
   decayLoop();
 }
+
+function restartDecay() {
+  if (decayTimeout) clearTimeout(decayTimeout);
+  startDecay();
+}
+
 
 function setupStarterButtons() {
   const buttons = document.querySelectorAll(".cardButton");
@@ -489,10 +468,11 @@ function setupStarterButtons() {
         <h2>${pokemon[index].name} Stats</h2>
         <p>Type: ${pokemon[index].type}</p>
         <p class = "hungerDisplay">Hunger: ${pokemon[index].hunger}</p>
+        <label for ="hungerBar">Hunger:</label>
+        <progress id="hungerBar" max ="100" value="${pokemon[index].hunger}"></progress>
         <p class = "happinessDisplay">Happiness: ${pokemon[index].happiness}</p>
         <p class = "energyDisplay">Energy: ${pokemon[index].energy}</p>
         <p class = "healthDisplay">Health: ${pokemon[index].health}</p>
-        <button class="levelButton">TEMPORARY</button>
         <p class = "levelDisplay">Level: ${pokemon[index].level}</p>
       `;
       // Update background color based on type
@@ -509,10 +489,10 @@ function setupStarterButtons() {
       DOMSelectors.container.appendChild(buttonDiv);
       // REVEAL NEW STUFF
       document.querySelector(".subHeader").classList.remove("Hidden");
-      setUpLevelButton();
       setUpFeedButton();
       setUpPlayButton();
-      setTimeout(startDecay,3000);
+      setUpSleepButton();
+      setTimeout(restartDecay,3000);
     });
   });
 }
@@ -543,10 +523,11 @@ function checkEvolution(poke) {
         <h2>${nextEvolution.name} Stats</h2>
         <p>Type: ${nextEvolution.type}</p>
         <p class = "hungerDisplay">Hunger: ${nextEvolution.hunger}</p>
+        <label for ="hungerBar">Hunger:</label>
+        <progress id="hungerBar" max ="100" value="${nextEvolution.hunger}"></progress>
         <p class = "happinessDisplay">Happiness: ${nextEvolution.happiness}</p>
         <p class = "energyDisplay">Energy: ${nextEvolution.energy}</p>
         <p class = "healthDisplay">Health: ${nextEvolution.health}</p>
-        <button class="levelButton">TEMPORARY</button>
         <p class = "levelDisplay">Level: ${poke.level}</p>
       `;
       DOMSelectors.container.appendChild(statsDiv);
@@ -559,12 +540,10 @@ function checkEvolution(poke) {
       <button class="actionButton" id="sleepButton">Sleep</button>
       `
       DOMSelectors.container.appendChild(buttonDiv);
-      setUpLevelButton();
       setUpFeedButton();
       setUpPlayButton();
       console.log(currentPokemon);
-
-      startDecay();
+      saveState();
     }
   }
 }
@@ -578,6 +557,7 @@ function setUpFeedButton() {
       poke.hunger = poke.hunger + 1;
       const hungerDisplay = document.querySelector(".hungerDisplay")
       hungerDisplay.textContent = `Hunger: ${poke.hunger}`
+      saveState();
     } else {
       feedButton.innerHTML = `${poke.name}'s Hunger is maxed!`;
       feedButton.classList.add("smallText");
@@ -589,8 +569,56 @@ function setUpFeedButton() {
   })
 }
 
+let sleepInterval = null;
+let statusText = null;
+
 function setUpSleepButton () {
-  // TOGGLE NOT SINGULAR CLICK USE VARIBALE FOR TOGGLE ON CLICK
+  const sleepButton = document.getElementById("sleepButton");
+  const feedButton = document.getElementById("feedButton");
+  const playButton = document.getElementById("playButton")
+  const card = DOMSelectors.container.firstElementChild;
+  if (!card) return;
+  
+  if (!sleepButton) return;
+  
+  sleepButton.addEventListener("click", () => {
+    if (!currentPokemon) return;
+
+    if (!sleepButton.classList.contains("sleeping")) {
+      sleepButton.classList.add("sleeping");
+      sleepButton.textContent = "Wake Up";
+      feedButton.disabled = true;
+      playButton.disabled = true;
+      if (!statusText) {
+        statusText = document.createElement("h2");
+        statusText.classList.add("status");
+        card.appendChild(statusText);
+      }
+      statusText.textContent = `SLP`;
+
+      sleepInterval = setInterval(() => {
+        if (currentPokemon.energy < 100) {
+          currentPokemon.energy = Math.min(100, currentPokemon.energy + 2);
+          updateStatsUI(currentPokemon);
+          saveState();
+        } else {
+          feedButton.disabled = false;
+          playButton.disabled = false;
+          clearInterval(sleepInterval);
+          sleepButton.classList.remove("sleeping");
+          sleepButton.textContent = "Sleep";
+          if (statusText) statusText.remove(), statusText = null;
+        }
+      }, 3000)
+    } else {
+      feedButton.disabled = false;
+      playButton.disabled = false;
+      sleepButton.classList.remove("sleeping");
+      sleepButton.textContent = "Sleep";
+      clearInterval(sleepInterval);
+      if (statusText) statusText.remove(), statusText = null;
+    }
+  })
 }
 
 function setUpPlayButton() {
@@ -605,6 +633,7 @@ function setUpPlayButton() {
       poke.happiness = poke.happiness + 1;
       const happinessDisplay = document.querySelector(".happinessDisplay")
       happinessDisplay.textContent = `Happiness: ${poke.happiness}`
+      saveState();
     } else {
       playButton.innerHTML = `${poke.name}'s Happiness is maxed!`;
       playButton.classList.add("smallText");
@@ -616,21 +645,6 @@ function setUpPlayButton() {
   })
 }
 
-function setUpLevelButton() {
-  const levelButton = document.querySelector(".levelButton");
-  levelButton.addEventListener("click", () => {
-    const pokemonName = document
-      .querySelector(".statsDiv h2")
-      .textContent.split(" ")[0];
-    const poke = pokemon.find((p) => p.name === pokemonName);
-    poke.level = (poke.level || 1) + 1;
-    const levelDisplay = document.querySelector(".levelDisplay");
-    levelDisplay.textContent = `Level: ${poke.level}`;
-    console.log(`${poke.name} leveled up to ${poke.level}`);
-    // CHECK EVO
-    checkEvolution(poke);
-  });
-}
 
 function setUpMinigameButton() {
   const button = document.getElementById("minigameButton");
@@ -794,7 +808,12 @@ function setUpBuyButton() {
     } else {
       if (money >= total) {
         cart.forEach((item) => {
-          inventory.push(item);
+          const invItem = inventory.find((i) => i.name === item.name);
+          if (invItem) {
+            invItem.quantity += item.quantity
+          } else {
+            inventory.push(item);
+          }
         });
         console.log(inventory);
         money = money - total;
@@ -806,6 +825,8 @@ function setUpBuyButton() {
         ).textContent = `Your total is: $${total}`;
         updateMoney(money);
         updateInventory();
+        inventoryUse();
+        saveState();
       } else {
         checkoutButton.textContent = "Not enough Pokedollars";
       }
@@ -813,57 +834,161 @@ function setUpBuyButton() {
   });
 }
 
-function makeInventory(item) {
-  const container = document.querySelector(".inventory");
-
-  container.insertAdjacentHTML(
-    "beforeend",
-    `<div class ="item" data-name = "${item.name}">
-    <h2 class="itemName"> ${item.name} </h2>
-    <img src="${item.sprite}" alt="${item.name}" class ="itemSprite" />
-    <h2 class="itemDesc"> ${item.desc} </h2>
-    <h2 class="itemQuantity">Quantity: x${item.quantity}</h2>
-    <button class="actionButton" id="useItem" data-name=${item.name}>Use</button>
-    </div>`
-  );
-  inventoryUse();
-}
-
 function updateInventory() {
-  document.querySelector(".inventory").textContent = "";
+  const container = document.querySelector(".inventory")
+
+  if (!container) return;
+
   inventory.forEach((itm) => {
-    makeInventory(itm);
+    let itemDiv = container.querySelector(`[data-name="${itm.name}"]`);
+
+    if (!itemDiv) {
+      itemDiv = document.createElement("div");
+      itemDiv.classList.add("item");
+      itemDiv.dataset.name = itm.name;
+      itemDiv.innerHTML = `
+        <h2 class="itemName">${itm.name}</h2>
+        <img src="${itm.sprite}" alt="${itm.name}" class="itemSprite" />
+        <h2 class="itemDesc">${itm.desc}</h2>
+        <h2 class="itemQuantity">Quantity: x${itm.quantity}</h2>
+        <button class="useItem" data-name="${itm.name}">Use</button>
+      `;
+      container.appendChild(itemDiv);
+    } else {
+      const qtyDisplay = itemDiv.querySelector(".itemQuantity");
+      qtyDisplay.textContent = `Quantity: x${itm.quantity}`;
+    }
   });
-  inventoryUse();
+
+  inventory
+    .filter((itm) => itm.quantity <= 0)
+    .forEach((itm) => {
+      const itemDiv = container.querySelector(`[data-name="${itm.name}"]`);
+      if (itemDiv) container.removeChild(itemDiv);
+    });
 }
 
 function inventoryUse() {
-  const buttons = document.querySelectorAll('[id="useItem"]')
-  console.log(buttons)
-  buttons.forEach(btn => {
-    btn.addEventListener("click", (event) => {
-    const item = inventory.find(itm => itm.name === event.target.dataset.name)
-    console.log(event.target.dataset.name);
-    console.log(item);
-    if(!currentPokemon) {
-      if(item.type === "Heal") {
-        console.log("test")
-/*       } elif (item.type === "Level Up") {
+  const invContainer = document.querySelector(".inventory");
+  if (!invContainer) return;
 
-      } elif (item.type === "Revive") {
+  if (invContainer._listenerAttached) return;
+  invContainer._listenerAttached = true;
 
-      } */
-    }}
-    })
+  invContainer.addEventListener("click", (event) => {
+    const btn = event.target.closest(".useItem");
+    if (!btn) return;
+
+    const itemName = btn.dataset.name;
+    const item = inventory.find((itm) => itm.name === itemName);
+    if (!item) return;
+
+    if (!currentPokemon) {
+      return;
+    }
+
+    if (btn.dataset.confirm !== "true") {
+      btn.dataset.confirm = "true";
+      const originalText = btn.textContent;
+      btn.textContent = "Confirm?";
+
+      btn._confirmTimeout = setTimeout(() => {
+        btn.dataset.confirm = "false";
+        btn.textContent = originalText;
+        delete btn._confirmTimeout;
+      }, 3000);
+      return;
+    }
+
+    if (btn._confirmTimeout) {
+      clearTimeout(btn._confirmTimeout);
+      delete btn._confirmTimeout;
+    }
+
+    btn.dataset.confirm = "false";
+    btn.textContent = "Use";
+
+    if (btn._confirmTimeout) {
+      clearTimeout(btn._confirmTimeout);
+      delete btn._confirmTimeout;
+    }
+
+    console.log()
+    if (item.type === "Heal") {
+      console.log("test")
+      if ((currentPokemon.health || 0) > 99) {
+        btn.textContent = "Too Much Health";
+        setTimeout(() => (btn.textContent = "Use"), 1500);
+        return;
+      }
+
+      if (currentPokemon.health === 0) {
+        btn.textContent = "Use Revive First";
+        setTimeout(() => (btn.textContent = "Use"), 1500);
+        return;
+      }
+      currentPokemon.health = Math.min(
+        100,
+        currentPokemon.health + item.value
+      );
+      item.quantity = item.quantity - 1;
+      updateStatsUI(currentPokemon);
+
+    } else if (item.type === "Level Up") {
+      if ((currentPokemon.level) < 100) {
+        currentPokemon.level = Math.min(
+          100,
+          currentPokemon.level + item.value
+        );
+        item.quantity = item.quantity - 1;
+        updateStatsUI(currentPokemon);
+      }
+    } else if (item.type === "Revive") {
+      if (currentPokemon.health !== 0) {
+        btn.textContent = "Pokemon is Alive";
+        setTimeout(() => (btn.textContent = "Use"), 1500);
+        return;
+      } else {
+        currentPokemon.health = Math.min(
+          100,
+          currentPokemon.health + item.value
+        );
+        item.quantity = item.quantity - 1;
+        updateStatsUI(currentPokemon);
+      }
+    }
+
+    const itemDiv = invContainer.querySelector(`[data-name="${item.name}"]`)
+    if (itemDiv) {
+      const qtyDisplay = itemDiv.querySelector(".itemQuantity");
+      qtyDisplay.textContent = `Quantity: x${item.quantity}`;
+
+      if (item.quantity <= 0) {
+        itemDiv.remove();
+      }
+    }
+    saveState();
   })
-}
+};
+
+updateMoney(money);
+updateInventory();
+inventoryUse();
+console.log(`Current Poke: ${currentPokemon}`);
 
 // INITIAL STARTERS
-makeCard(pokemon[0], DOMSelectors.container);
-makeCard(pokemon[3], DOMSelectors.container);
-makeCard(pokemon[6], DOMSelectors.container);
 
-setupStarterButtons();
+if (currentPokemon) {
+  renderCurrentPokemon(currentPokemon);
+  const starterText = document.querySelector(".starterText");
+  if (starterText) starterText.remove();
+} else {
+  // No saved Pokémon, show starter options
+  makeCard(pokemon[0], DOMSelectors.container);
+  makeCard(pokemon[3], DOMSelectors.container);
+  makeCard(pokemon[6], DOMSelectors.container);
+  setupStarterButtons();
+}
 
 //INITIALIZE SIDEBAR
 
@@ -904,3 +1029,4 @@ document.querySelector(".cartButton").addEventListener("click", () => {
 });
 
 setUpBuyButton();
+updateInventory();
