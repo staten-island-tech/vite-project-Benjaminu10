@@ -436,7 +436,6 @@ function updateStatsUI(pokemon) {
     </div>
   </div>
 `;
-  saveState();
 }
 
 let decayTimeout = null;
@@ -591,7 +590,6 @@ function setUpFeedButton() {
     if (poke.hunger < 100) {
       poke.hunger = poke.hunger + 1;
       updateStatsUI();
-      saveState();
     } else {
       feedButton.innerHTML = `${poke.name}'s Hunger is maxed!`;
       feedButton.classList.add("smallText");
@@ -634,16 +632,18 @@ function setUpSleepButton () {
         if (currentPokemon.energy < 100) {
           currentPokemon.energy = Math.min(100, currentPokemon.energy + 2);
           updateStatsUI(currentPokemon);
-          saveState();
         } else {
           feedButton.disabled = false;
           playButton.disabled = false;
           clearInterval(sleepInterval);
           sleepButton.classList.remove("sleeping");
           sleepButton.textContent = "Sleep";
-          if (statusText) statusText.remove(), statusText = null;
+          if (statusText) {
+            statusText.remove();
+            statusText = null;
+          } 
         }
-      }, 3000)
+      }, 2000)
     } else {
       feedButton.disabled = false;
       playButton.disabled = false;
@@ -652,6 +652,7 @@ function setUpSleepButton () {
       clearInterval(sleepInterval);
       if (statusText) statusText.remove(), statusText = null;
     }
+
   })
 }
 
@@ -666,7 +667,6 @@ function setUpPlayButton() {
     if (poke.happiness < 100) {
       poke.happiness = poke.happiness + 1;
       updateStatsUI();
-      saveState();
     } else {
       playButton.innerHTML = `${poke.name}'s Happiness is maxed!`;
       playButton.classList.add("smallText");
@@ -1001,7 +1001,6 @@ function inventoryUse() {
         itemDiv.remove();
       }
     }
-    saveState();
   })
 };
 
@@ -1064,3 +1063,5 @@ document.querySelector(".cartButton").addEventListener("click", () => {
 
 setUpBuyButton();
 updateInventory();
+
+setInterval(saveState(), 5000)
