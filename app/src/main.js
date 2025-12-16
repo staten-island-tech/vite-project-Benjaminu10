@@ -274,14 +274,52 @@ function renderCurrentPokemon(poke) {
   const statsDiv = document.createElement("div");
   statsDiv.classList.add("statsDiv");
   statsDiv.innerHTML = `
-    <h2>${poke.name} Stats</h2>
-    <p>Type: ${poke.type}</p>
-    <p class = "hungerDisplay">Hunger: ${poke.hunger}</p>
-    <p class = "happinessDisplay">Happiness: ${poke.happiness}</p>
-    <p class = "energyDisplay">Energy: ${poke.energy}</p>
-    <p class = "healthDisplay">Health: ${poke.health}</p>
-    <p class = "levelDisplay">Level: ${poke.level}</p>
-  `;
+  <h2 class="statsTitle">${poke.name} Stats</h2>
+
+  <div class="statsLeft">
+    <div class="typeRow">
+      <span class="statLabel">Type:</span>
+      <span class="statValue">${poke.type}</span>
+    </div>
+
+    <div class="statsRow">
+      <span class="statLabel">Hunger:</span>
+      <span class="statValue">${poke.hunger}</span>
+      <div class="pokeBar">
+        <div class="pokeFill" style="--value:${poke.hunger}%"></div>
+      </div>
+    </div>
+
+    <div class="statsRow">
+      <span class="statLabel">Happiness:</span>
+      <span class="statValue">${poke.happiness}</span>
+      <div class="pokeBar">
+        <div class="pokeFill" style="--value:${poke.happiness}%"></div>
+      </div>
+    </div>
+
+    <div class="statsRow">
+      <span class="statLabel">Energy:</span>
+      <span class="statValue">${poke.energy}</span>
+      <div class="pokeBar">
+        <div class="pokeFill" style="--value:${poke.energy}%"></div>
+      </div>
+    </div>
+
+    <div class="statsRow">
+      <span class="statLabel">Health:</span>
+      <span class="statValue">${poke.health}</span>
+      <div class="pokeBar">
+        <div class="pokeFill" style="--value:${poke.health}%"></div>
+      </div>
+    </div>
+
+    <div class="typeRow">
+      <span class="statLabel">Level:</span>
+      <span class="statValue">${poke.level}</span>
+    </div>
+  </div>
+`;
   DOMSelectors.container.appendChild(statsDiv);
 
   const buttonDiv = document.createElement("div");
@@ -464,17 +502,53 @@ function setupStarterButtons() {
       // SHOW STARTER STATS
       const statsDiv = document.createElement("div");
       statsDiv.classList.add("statsDiv");
-      statsDiv.innerHTML = `
-        <h2>${pokemon[index].name} Stats</h2>
-        <p>Type: ${pokemon[index].type}</p>
-        <p class = "hungerDisplay">Hunger: ${pokemon[index].hunger}</p>
-        <label for ="hungerBar">Hunger:</label>
-        <progress id="hungerBar" max ="100" value="${pokemon[index].hunger}"></progress>
-        <p class = "happinessDisplay">Happiness: ${pokemon[index].happiness}</p>
-        <p class = "energyDisplay">Energy: ${pokemon[index].energy}</p>
-        <p class = "healthDisplay">Health: ${pokemon[index].health}</p>
-        <p class = "levelDisplay">Level: ${pokemon[index].level}</p>
-      `;
+  statsDiv.innerHTML = `
+  <h2 class="statsTitle">${currentPokemon.name} Stats</h2>
+
+  <div class="statsLeft">
+    <div class="typeRow">
+      <span class="statLabel">Type:</span>
+      <span class="statValue">${currentPokemon.type}</span>
+    </div>
+
+    <div class="statsRow">
+      <span class="statLabel">Hunger:</span>
+      <span class="statValue">${currentPokemon.hunger}</span>
+      <div class="pokeBar">
+        <div class="pokeFill" style="--value:${currentPokemon.hunger}%"></div>
+      </div>
+    </div>
+
+    <div class="statsRow">
+      <span class="statLabel">Happiness:</span>
+      <span class="statValue">${currentPokemon.happiness}</span>
+      <div class="pokeBar">
+        <div class="pokeFill" style="--value:${currentPokemon.happiness}%"></div>
+      </div>
+    </div>
+
+    <div class="statsRow">
+      <span class="statLabel">Energy:</span>
+      <span class="statValue">${currentPokemon.energy}</span>
+      <div class="pokeBar">
+        <div class="pokeFill" style="--value:${currentPokemon.energy}%"></div>
+      </div>
+    </div>
+
+    <div class="statsRow">
+      <span class="statLabel">Health:</span>
+      <span class="statValue">${currentPokemon.health}</span>
+      <div class="pokeBar">
+        <div class="pokeFill" style="--value:${currentPokemon.health}%"></div>
+      </div>
+    </div>
+
+    <div class="typeRow">
+      <span class="statLabel">Level:</span>
+      <span class="statValue">${currentPokemon.level}</span>
+    </div>
+  </div>
+`;
       // Update background color based on type
       updateBackground(pokemon[index].type);
       DOMSelectors.container.appendChild(statsDiv);
